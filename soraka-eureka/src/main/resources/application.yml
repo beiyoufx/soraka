@@ -1,0 +1,16 @@
+spring:
+  application:
+    name: soraka-eureka
+
+server:
+  port: 8001
+
+eureka:
+  instance:
+    hostname: localhost
+    preferIpAddress: true
+    instance-id: ${spring.cloud.client.ipAddress}:${server.port}
+  client:
+    registerWithEureka: false
+    fetchRegistry: false
+

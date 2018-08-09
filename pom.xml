@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <description>
+        soraka is a spring cloud sample.
+    </description>
+
+    <!--基本信息-->
+    <groupId>com.soraka</groupId>
+    <artifactId>soraka</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+    <developers>
+        <developer>
+            <name>北有风雪</name>
+            <url>https://gitee.com/beiyoufx/soraka</url>
+        </developer>
+    </developers>
+
+    <!--属性-->
+    <properties>
+        <!-- 文件拷贝时的编码 -->
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <!-- 编译时的编码 -->
+        <maven.compiler.encoding>UTF-8</maven.compiler.encoding>
+        <fastjson.version>1.2.7</fastjson.version>
+        <spring.version>4.2.2.RELEASE</spring.version>
+        <mybatis.spring.version>1.2.4</mybatis.spring.version>
+        <mybatis.version>3.2.6</mybatis.version>
+        <dubbo.version>2.5.3</dubbo.version>
+        <junit.version>4.12</junit.version>
+        <log4j.version>1.2.17</log4j.version>
+        <slf4j.version>1.7.7</slf4j.version>
+        <xstream.version>1.4.4</xstream.version>
+        <druid.version>1.0.26</druid.version>
+        <mysql.connector.version>5.1.22</mysql.connector.version>
+        <jackson.version>2.9.0</jackson.version>
+    </properties>
+
+    <!--依赖-->
+    <dependencies></dependencies>
+    <!--依赖-->
+    <dependencyManagement></dependencyManagement>
+
+    <!--仓库-->
+    <repositories>
+        <repository>
+            <id>public</id>
+            <name>aliyun nexus</name>
+            <url>http://maven.aliyun.com/nexus/content/groups/public/</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+        </repository>
+    </repositories>
+    <pluginRepositories>
+        <pluginRepository>
+            <id>public</id>
+            <name>aliyun nexus</name>
+            <url>http://maven.aliyun.com/nexus/content/groups/public/</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </pluginRepository>
+    </pluginRepositories>
+</project>
