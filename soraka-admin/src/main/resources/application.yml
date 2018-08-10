@@ -1,8 +1,8 @@
 spring:
   application:
-    name: soraka-gateway
+    name: soraka-admin
 server:
-  port: 8002
+  port: 8003
 eureka:
   instance:
     hostname: localhost
@@ -12,13 +12,3 @@ eureka:
     fetch-registry: true
     service-url:
       defaultZone: http://localhost:8001/eureka/
-zuul:
-  ignored-services: '**'
-  routes:
-    soraka-weixin: 'mp/**'
-    soraka-admin: 'admin/**'
-management:
-  security:
-    enabled: false
-ribbon:
-  ReadTimeout: 3000

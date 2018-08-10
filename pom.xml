@@ -17,6 +17,8 @@
     <modules>
         <module>soraka-discovery</module>
         <module>soraka-gateway</module>
+        <module>soraka-admin</module>
+        <module>soraka-weixin</module>
     </modules>
 
     <developers>
