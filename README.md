@@ -5,7 +5,11 @@
 
 #### 软件架构
 软件架构说明
-
+1. 运行环境：JDK 1.8.0_161
+2. 主框架：Spring-boot 1.5.15.RELEASE
+3. 微服务：Spring-cloud Edgware.SR4
+4. 服务发现：Eureka
+5. 网关：Zuul
 
 #### 安装教程
 
