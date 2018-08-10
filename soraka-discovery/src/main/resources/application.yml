@@ -1,10 +1,8 @@
 spring:
   application:
-    name: soraka-eureka
-
+    name: soraka-discovery
 server:
   port: 8001
-
 eureka:
   instance:
     hostname: localhost
@@ -13,4 +11,6 @@ eureka:
   client:
     registerWithEureka: false
     fetchRegistry: false
+    service-url:
+      defaultZone: http://localhost:8001/eureka/
 

@@ -1,0 +1,21 @@
+spring:
+  application:
+    name: soraka-gateway
+server:
+  port: 8002
+eureka:
+  instance:
+    hostname: localhost
+    prefer-ip-address: true
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:8001/eureka/
+zuul:
+  ignored-services: '**'
+  routes:
+    soraka-weixin: 'mp/**'
+management:
+  security:
+    enabled: false

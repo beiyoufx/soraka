@@ -1,4 +1,4 @@
-package com.soraka.eureka;
+package com.soraka.discovery;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -9,12 +9,12 @@ import org.springframework.cloud.netflix.eureka.server.EnableEurekaServer;
  *
  * @author yongjie.teng
  * @date 2018/8/9
- * @package com.soraka.eureka
+ * @package com.soraka.discovery
  */
 @EnableEurekaServer
 @SpringBootApplication
-public class SorakaEurekaApplication {
+public class SorakaDiscoveryApplication {
     public static void main(String[] args) {
-        SpringApplication.run(SorakaEurekaApplication.class, args);
+        SpringApplication.run(SorakaDiscoveryApplication.class, args);
     }
 }
