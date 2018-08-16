@@ -1,5 +1,7 @@
 package com.soraka.admin.domain;
 
+import lombok.Data;
+
 import java.io.Serializable;
 import java.util.Date;
 
@@ -10,6 +12,7 @@ import java.util.Date;
  * @date 2018/8/16
  * @package com.soraka.admin.domain
  */
+@Data
 public class BaseDO implements Serializable {
 
     /**
@@ -31,36 +34,4 @@ public class BaseDO implements Serializable {
      * 修改时间
      */
     private Date modifyTime;
-
-    public Long getCreateUser() {
-        return createUser;
-    }
-
-    public void setCreateUser(Long createUser) {
-        this.createUser = createUser;
-    }
-
-    public Long getModifyUser() {
-        return modifyUser;
-    }
-
-    public void setModifyUser(Long modifyUser) {
-        this.modifyUser = modifyUser;
-    }
-
-    public Date getCreateTime() {
-        return createTime;
-    }
-
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
-    }
-
-    public Date getModifyTime() {
-        return modifyTime;
-    }
-
-    public void setModifyTime(Date modifyTime) {
-        this.modifyTime = modifyTime;
-    }
 }
