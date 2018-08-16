@@ -1,8 +1,8 @@
 package com.soraka.admin;
 
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 
 /**
@@ -12,8 +12,9 @@ import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
  * @date 2018/8/9
  * @package com.soraka.admin
  */
+@MapperScan("com.soraka.admin.dao")
 @EnableEurekaClient
-@SpringBootApplication(exclude = {DataSourceAutoConfiguration.class})
+@SpringBootApplication
 public class SorakaAdminApplication {
     public static void main(String[] args) {
         SpringApplication.run(SorakaAdminApplication.class, args);

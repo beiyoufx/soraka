@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.soraka.admin.dao.RoleDAO">
+
+    <select id="get" resultType="com.soraka.admin.domain.RoleDO" parameterType="java.lang.Long">
+        SELECT
+            <include refid="all_fields"/>
+        FROM
+            sys_role
+        WHERE
+            id = #{id}
+    </select>
+    <sql id="all_fields">
+        id,
+        name,
+        description,
+        status,
+        create_user,
+        modify_user,
+        create_time,
+        modify_time
+    </sql>
+</mapper>
