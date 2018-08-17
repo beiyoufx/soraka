@@ -59,6 +59,11 @@ public class UserDO extends BaseDO {
     private Integer status;
 
     /**
+     * 部门ID
+     */
+    private Long deptId;
+
+    /**
      * 是否已删除
      */
     private Boolean deleted;

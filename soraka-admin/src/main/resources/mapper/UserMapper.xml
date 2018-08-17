@@ -21,6 +21,7 @@
         sys_user.salt,
         sys_user.gender,
         sys_user.status,
+        sys_user.dept_id,
         sys_user.create_user,
         sys_user.modify_user,
         sys_user.create_time,
