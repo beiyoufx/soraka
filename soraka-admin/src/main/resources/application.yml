@@ -6,6 +6,9 @@ spring:
     url: jdbc:mysql://localhost:3306/soraka?useUnicode=true&characterEncoding=utf8
     username: root
     password: 123
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
 mybatis:
   mapper-locations: mapper/**Mapper.xml
   configuration:
@@ -21,3 +24,6 @@ eureka:
     fetch-registry: true
     service-url:
       defaultZone: http://localhost:8001/eureka/
+logging:
+  level:
+    com.soraka.admin.dao: DEBUG

@@ -3,22 +3,31 @@
 
 <mapper namespace="com.soraka.admin.dao.RoleDAO">
 
-    <select id="get" resultType="com.soraka.admin.domain.RoleDO" parameterType="java.lang.Long">
+    <select id="get" resultType="com.soraka.admin.model.domain.RoleDO" parameterType="java.lang.Long">
         SELECT
             <include refid="all_fields"/>
         FROM
-            sys_role
+            sys_role role
         WHERE
             id = #{id}
     </select>
+    <select id="findByUserId" resultType="com.soraka.admin.model.domain.RoleDO" parameterType="java.lang.Long">
+        SELECT
+        <include refid="all_fields"/>
+        FROM
+        sys_role AS role
+        JOIN sys_user_role AS ur ON ur.role_id = role.id
+        WHERE
+        ur.user_id = #{userId}
+    </select>
     <sql id="all_fields">
-        id,
-        name,
-        description,
-        status,
-        create_user,
-        modify_user,
-        create_time,
-        modify_time
+        role.id,
+        role.name,
+        role.description,
+        role.status,
+        role.create_user,
+        role.modify_user,
+        role.create_time,
+        role.modify_time
     </sql>
 </mapper>

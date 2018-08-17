@@ -1,7 +1,8 @@
 package com.soraka.admin.service.impl;
 
 import com.soraka.admin.dao.UserDAO;
-import com.soraka.admin.domain.UserDO;
+import com.soraka.admin.model.domain.UserDO;
+import com.soraka.admin.service.RoleService;
 import com.soraka.admin.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,6 +18,9 @@ import org.springframework.transaction.annotation.Transactional;
 public class UserServiceImpl implements UserService {
     @Autowired
     UserDAO userDAO;
+    @Autowired
+    RoleService roleService;
+
     /**
      * 根据主键获取用户信息
      *
@@ -25,6 +29,10 @@ public class UserServiceImpl implements UserService {
      */
     @Override
     public UserDO get(Long id) {
-        return userDAO.get(id);
+        UserDO userDO = userDAO.get(id);
+        if (userDO != null) {
+            userDO.setRoles(roleService.findByUserId(userDO.getId()));
+        }
+        return userDO;
     }
 }

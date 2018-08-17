@@ -1,13 +1,15 @@
-package com.soraka.admin.domain;
+package com.soraka.admin.model.domain;
 
 import lombok.Data;
+
+import java.util.List;
 
 /**
  * 系统用户
  *
  * @author yongjie.teng
  * @date 2018/8/15
- * @package com.soraka.admin.domain
+ * @package com.soraka.admin.model.domain
  */
 @Data
 public class UserDO extends BaseDO {
@@ -60,4 +62,9 @@ public class UserDO extends BaseDO {
      * 是否已删除
      */
     private Boolean deleted;
+
+    /**
+     * 角色集合
+     */
+    private List<RoleDO> roles;
 }

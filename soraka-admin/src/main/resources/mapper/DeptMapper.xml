@@ -3,7 +3,7 @@
 
 <mapper namespace="com.soraka.admin.dao.DeptDAO">
 
-    <select id="get" resultType="com.soraka.admin.domain.DeptDO" parameterType="java.lang.Long">
+    <select id="get" resultType="com.soraka.admin.model.domain.DeptDO" parameterType="java.lang.Long">
         SELECT
             <include refid="all_fields"/>
         FROM

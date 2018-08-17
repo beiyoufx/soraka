@@ -1,6 +1,6 @@
 package com.soraka.admin.dao;
 
-import com.soraka.admin.domain.DeptDO;
+import com.soraka.admin.model.domain.DeptDO;
 
 /**
  * 部门

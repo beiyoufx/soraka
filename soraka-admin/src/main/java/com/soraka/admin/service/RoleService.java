@@ -1,7 +1,9 @@
 package com.soraka.admin.service;
 
-import com.soraka.admin.domain.RoleDO;
+import com.soraka.admin.model.domain.RoleDO;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * 角色
@@ -19,4 +21,12 @@ public interface RoleService {
      * @return {@link RoleDO}
      */
     RoleDO get(Long id);
+
+    /**
+     * 获取用户角色集合
+     *
+     * @param userId 用户主键
+     * @return List<RoleDO>
+     */
+    List<RoleDO> findByUserId(Long userId);
 }

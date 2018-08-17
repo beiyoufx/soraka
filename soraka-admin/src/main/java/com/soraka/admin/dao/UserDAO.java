@@ -1,6 +1,6 @@
 package com.soraka.admin.dao;
 
-import com.soraka.admin.domain.UserDO;
+import com.soraka.admin.model.domain.UserDO;
 
 /**
  * 系统用户

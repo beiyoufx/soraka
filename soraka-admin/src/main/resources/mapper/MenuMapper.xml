@@ -3,26 +3,36 @@
 
 <mapper namespace="com.soraka.admin.dao.MenuDAO">
 
-    <select id="get" resultType="com.soraka.admin.domain.MenuDO" parameterType="java.lang.Long">
+    <select id="get" resultType="com.soraka.admin.model.domain.MenuDO" parameterType="java.lang.Long">
         SELECT
             <include refid="all_fields"/>
         FROM
-            sys_menu
+            sys_menu menu
         WHERE
             id = #{id}
     </select>
+    <select id="findByUserId" resultType="com.soraka.admin.model.domain.MenuDO" parameterType="java.lang.Long">
+        SELECT
+        <include refid="all_fields"/>
+        FROM
+        sys_menu menu
+        JOIN sys_role_menu um ON um.menu_id = menu.id
+        JOIN sys_user_role ur ON um.role_id = ur.role_id
+        WHERE
+        ur.user_id = #{userId}
+    </select>
     <sql id="all_fields">
-        id,
-        name,
-        type,
-        url,
-        permission,
-        ico,
-        level,
-        parent_id,
-        sequence,
-        status,
-        create_time,
-        modify_time
+        menu.id,
+        menu.name,
+        menu.type,
+        menu.url,
+        menu.permission,
+        menu.ico,
+        menu.level,
+        menu.parent_id,
+        menu.sequence,
+        menu.status,
+        menu.create_time,
+        menu.modify_time
     </sql>
 </mapper>

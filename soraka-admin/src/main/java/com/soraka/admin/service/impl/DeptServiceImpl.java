@@ -1,7 +1,7 @@
 package com.soraka.admin.service.impl;
 
 import com.soraka.admin.dao.DeptDAO;
-import com.soraka.admin.domain.DeptDO;
+import com.soraka.admin.model.domain.DeptDO;
 import com.soraka.admin.service.DeptService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

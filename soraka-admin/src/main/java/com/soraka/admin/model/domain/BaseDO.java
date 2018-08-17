@@ -1,4 +1,4 @@
-package com.soraka.admin.domain;
+package com.soraka.admin.model.domain;
 
 import lombok.Data;
 
@@ -10,10 +10,10 @@ import java.util.Date;
  *
  * @author yongjie.teng
  * @date 2018/8/16
- * @package com.soraka.admin.domain
+ * @package com.soraka.admin.model.domain
  */
 @Data
-public class BaseDO implements Serializable {
+public abstract class BaseDO implements Serializable {
 
     /**
      * 创建人ID

@@ -1,7 +1,9 @@
 package com.soraka.admin.service;
 
-import com.soraka.admin.domain.MenuDO;
+import com.soraka.admin.model.domain.MenuDO;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * 菜单
@@ -19,4 +21,20 @@ public interface MenuService {
      * @return {@link MenuDO}
      */
     MenuDO get(Long id);
+
+    /**
+     * 获取用户菜单
+     *
+     * @param userId 用户ID
+     * @return List<MenuDO>
+     */
+    List<MenuDO> findByUserId(Long userId);
+
+    /**
+     * 获取用户权限集合
+     *
+     * @param userId 用户ID
+     * @return List<MenuDO>
+     */
+    public List<String> getUserPermission(Long userId);
 }

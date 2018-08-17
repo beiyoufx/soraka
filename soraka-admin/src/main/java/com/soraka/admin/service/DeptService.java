@@ -1,6 +1,6 @@
 package com.soraka.admin.service;
 
-import com.soraka.admin.domain.DeptDO;
+import com.soraka.admin.model.domain.DeptDO;
 import org.springframework.stereotype.Service;
 
 /**

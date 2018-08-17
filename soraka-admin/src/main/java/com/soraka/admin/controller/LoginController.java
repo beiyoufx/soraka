@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @Api(tags = "登陆服务")
 @RestController
-public class LoginController {
+public class LoginController extends BaseController {
 
     @ApiOperation("Hello接口")
     @GetMapping("hello")

@@ -1,6 +1,8 @@
 package com.soraka.admin.dao;
 
-import com.soraka.admin.domain.MenuDO;
+import com.soraka.admin.model.domain.MenuDO;
+
+import java.util.List;
 
 /**
  * 菜单
@@ -17,4 +19,12 @@ public interface MenuDAO {
      * @return {@link MenuDO}
      */
     MenuDO get(Long id);
+
+    /**
+     * 获取用户菜单
+     *
+     * @param userId 用户ID
+     * @return List<MenuDO>
+     */
+    List<MenuDO> findByUserId(Long userId);
 }
