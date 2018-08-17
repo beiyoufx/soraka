@@ -1,15 +1,17 @@
 package com.soraka.admin.controller;
 
 import com.soraka.admin.model.domain.UserDO;
+import com.soraka.admin.model.dto.Page;
+import com.soraka.admin.model.dto.QueryParam;
 import com.soraka.admin.model.dto.R;
 import com.soraka.admin.service.UserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author yongjie.teng
@@ -29,6 +31,15 @@ public class UserController extends BaseController {
         UserDO user = userService.get(id);
         R r = R.success();
         r.setData(user);
+        return r;
+    }
+
+    @GetMapping
+    @ApiOperation("查询用户列表")
+    public R find(QueryParam queryParam) {
+        Page page = userService.findPage(queryParam);
+        R r = R.success();
+        r.setData(page);
         return r;
     }
 }

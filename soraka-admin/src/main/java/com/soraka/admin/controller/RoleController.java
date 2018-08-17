@@ -12,9 +12,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * @author yongjie.teng
  * @date 2018/8/17
@@ -30,16 +27,7 @@ public class RoleController extends BaseController {
     @GetMapping
     @ApiOperation("获取所有角色")
     public R findAll() {
-        Page page = new Page();
-        List<RoleDO> roles;
-        int total = roleService.countAll();
-        page.setTotal(total);
-        if (total > 0) {
-            roles = roleService.findAll();
-            page.setRows(roles);
-        } else {
-            page.setRows(new ArrayList<>());
-        }
+        Page page = roleService.findPage();
         R r = R.success();
         r.setData(page);
         return r;

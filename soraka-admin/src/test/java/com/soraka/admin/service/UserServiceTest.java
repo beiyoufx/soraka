@@ -1,6 +1,8 @@
 package com.soraka.admin.service;
 
 import com.soraka.admin.model.domain.UserDO;
+import com.soraka.admin.model.dto.Page;
+import com.soraka.admin.model.dto.QueryParam;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -19,5 +21,12 @@ public class UserServiceTest {
     public void get() {
         UserDO user = userService.get(1L);
         Assert.assertNotNull(user);
+    }
+
+    @Test
+    public void findPage() {
+        QueryParam param = new QueryParam();
+        param.setQueryText("soraka");
+        Page page = userService.findPage(param);
     }
 }

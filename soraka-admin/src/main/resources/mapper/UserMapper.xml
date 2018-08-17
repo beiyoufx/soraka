@@ -11,6 +11,43 @@
         WHERE
             sys_user.id = #{id}
     </select>
+    <select id="find" resultType="com.soraka.admin.model.domain.UserDO" parameterType="com.soraka.admin.model.dto.QueryParam">
+        SELECT
+            <include refid="all_fields"/>
+        FROM
+            sys_user
+        <where>
+            <if test="queryText != null and queryText.trim() != ''">
+                OR username = #{queryText}
+                OR email = #{queryText}
+                OR mobilephone = #{queryText}
+                OR name = #{queryText}
+            </if>
+        </where>
+        <choose>
+            <when test="sort != null and sort.trim() != ''">
+                ORDER BY ${sort} ${order}
+            </when>
+            <otherwise>
+                ORDER BY sys_user.id DESC
+            </otherwise>
+        </choose>
+        <if test="offset != null and limit != null">
+            LIMIT #{offset}, #{limit}
+        </if>
+    </select>
+    <select id="count" resultType="java.lang.Integer" parameterType="com.soraka.admin.model.dto.QueryParam">
+        SELECT COUNT(*) FROM
+        sys_user
+        <where>
+            <if test="queryText != null and queryText.trim() != ''">
+                AND username = #{queryText}
+                AND email = #{queryText}
+                AND mobilephone = #{queryText}
+                AND name = #{queryText}
+            </if>
+        </where>
+    </select>
     <sql id="all_fields">
         sys_user.id,
         sys_user.username,

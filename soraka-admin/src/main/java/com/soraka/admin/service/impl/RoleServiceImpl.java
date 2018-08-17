@@ -2,10 +2,12 @@ package com.soraka.admin.service.impl;
 
 import com.soraka.admin.dao.RoleDAO;
 import com.soraka.admin.model.domain.RoleDO;
+import com.soraka.admin.model.dto.Page;
 import com.soraka.admin.service.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -50,12 +52,22 @@ public class RoleServiceImpl implements RoleService {
     }
 
     /**
-     * 获取角色总数
+     * 获取所有角色页
      *
-     * @return {@link Integer}
+     * @return {@link Page}
      */
     @Override
-    public Integer countAll() {
-        return roleDAO.countAll();
+    public Page findPage() {
+        Page page = new Page();
+        List<RoleDO> roles;
+        int total = roleDAO.countAll();
+        page.setTotal(total);
+        if (total > 0) {
+            roles = roleDAO.findAll();
+            page.setRows(roles);
+        } else {
+            page.setRows(new ArrayList<>());
+        }
+        return page;
     }
 }

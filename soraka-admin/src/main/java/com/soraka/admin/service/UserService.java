@@ -1,6 +1,8 @@
 package com.soraka.admin.service;
 
 import com.soraka.admin.model.domain.UserDO;
+import com.soraka.admin.model.dto.Page;
+import com.soraka.admin.model.dto.QueryParam;
 import org.springframework.stereotype.Service;
 
 /**
@@ -19,4 +21,12 @@ public interface UserService {
      * @return {@link UserDO}
      */
     UserDO get(Long id);
+
+    /**
+     * 查询用户列表页
+     *
+     * @param queryParam 查询参数
+     * @return {@link Page}
+     */
+    Page findPage(QueryParam queryParam);
 }

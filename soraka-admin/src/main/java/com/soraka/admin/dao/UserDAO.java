@@ -1,6 +1,9 @@
 package com.soraka.admin.dao;
 
 import com.soraka.admin.model.domain.UserDO;
+import com.soraka.admin.model.dto.QueryParam;
+
+import java.util.List;
 
 /**
  * 系统用户
@@ -17,4 +20,20 @@ public interface UserDAO {
      * @return {@link UserDO}
      */
     UserDO get(Long id);
+
+    /**
+     * 查询用户列表
+     *
+     * @param param 查询参数
+     * @return List<UserDO>
+     */
+    List<UserDO> find(QueryParam param);
+
+    /**
+     * 查询用户列表条数
+     *
+     * @param param 查询参数
+     * @return {@link Integer}
+     */
+    Integer count(QueryParam param);
 }

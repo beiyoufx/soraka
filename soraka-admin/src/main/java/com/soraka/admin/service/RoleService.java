@@ -1,6 +1,7 @@
 package com.soraka.admin.service;
 
 import com.soraka.admin.model.domain.RoleDO;
+import com.soraka.admin.model.dto.Page;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -38,9 +39,9 @@ public interface RoleService {
     List<RoleDO> findAll();
 
     /**
-     * 获取角色总数
+     * 获取所有角色页
      *
-     * @return {@link Integer}
+     * @return {@link Page}
      */
-    Integer countAll();
+    Page findPage();
 }
