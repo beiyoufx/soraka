@@ -28,4 +28,10 @@ public class RoleServiceTest {
         List<RoleDO> roles = roleService.findByUserId(1L);
         Assert.assertEquals(1, roles.size());
     }
+
+    @Test
+    public void findAll() {
+        List<RoleDO> roles = roleService.findAll();
+        Assert.assertEquals(1, roles.size());
+    }
 }

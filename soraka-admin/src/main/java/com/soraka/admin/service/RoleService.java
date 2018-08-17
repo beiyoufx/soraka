@@ -29,4 +29,18 @@ public interface RoleService {
      * @return List<RoleDO>
      */
     List<RoleDO> findByUserId(Long userId);
+
+    /**
+     * 获取所有角色
+     *
+     * @return List<RoleDO>
+     */
+    List<RoleDO> findAll();
+
+    /**
+     * 获取角色总数
+     *
+     * @return {@link Integer}
+     */
+    Integer countAll();
 }
