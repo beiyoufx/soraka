@@ -36,5 +36,5 @@ public interface MenuService {
      * @param userId 用户ID
      * @return List<MenuDO>
      */
-    public List<String> getUserPermission(Long userId);
+    List<String> getUserPermission(Long userId);
 }

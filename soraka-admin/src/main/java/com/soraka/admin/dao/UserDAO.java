@@ -36,4 +36,28 @@ public interface UserDAO {
      * @return {@link Integer}
      */
     Integer count(QueryParam param);
+
+    /**
+     * 根据用户名获取用户
+     *
+     * @param username 用户名
+     * @return {@link UserDO}
+     */
+    UserDO getByUsername(String username);
+
+    /**
+     * 根据手机号获取用户
+     *
+     * @param mobilephone 手机号
+     * @return {@link UserDO}
+     */
+    UserDO getByMobilephone(String mobilephone);
+
+    /**
+     * 根据邮箱获取用户
+     *
+     * @param email 邮箱
+     * @return {@link UserDO}
+     */
+    UserDO getByEmail(String email);
 }

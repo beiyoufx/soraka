@@ -1,5 +1,6 @@
 package com.soraka.admin.model.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import java.util.List;
@@ -41,11 +42,13 @@ public class UserDO extends BaseDO {
     /**
      * 密码
      */
+    @JsonIgnore
     private String password;
 
     /**
      * 盐值
      */
+    @JsonIgnore
     private String salt;
 
     /**

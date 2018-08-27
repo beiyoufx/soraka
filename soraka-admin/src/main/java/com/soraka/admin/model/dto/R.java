@@ -1,5 +1,6 @@
 package com.soraka.admin.model.dto;
 
+import com.soraka.admin.exception.BuzCode;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -16,12 +17,12 @@ public class R implements Serializable {
     /**
      * 返回码
      */
-    private String code = "0";
+    private int code = BuzCode.SUCCEED.getCode();
 
     /**
      * 返回信息
      */
-    private String message = "success";
+    private String message = BuzCode.SUCCEED.getMessage();
 
     /**
      * 返回数据
@@ -33,18 +34,18 @@ public class R implements Serializable {
     }
 
     public static R fail() {
-        return new R("400", "fail");
+        return new R(BuzCode.FAILED.getCode(), BuzCode.FAILED.getMessage());
     }
 
     public R() {
     }
 
-    public R(String code, String message) {
+    public R(int code, String message) {
         this.code = code;
         this.message = message;
     }
 
-    public R(String code, String message, Object data) {
+    public R(int code, String message, Object data) {
         this.code = code;
         this.message = message;
         this.data = data;

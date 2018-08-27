@@ -11,6 +11,30 @@
         WHERE
             sys_user.id = #{id}
     </select>
+    <select id="getByUsername" resultType="com.soraka.admin.model.domain.UserDO">
+        SELECT
+            <include refid="all_fields"/>
+        FROM
+            sys_user
+        WHERE
+            sys_user.username = #{username}
+    </select>
+    <select id="getByMobilephone" resultType="com.soraka.admin.model.domain.UserDO">
+        SELECT
+            <include refid="all_fields"/>
+        FROM
+            sys_user
+        WHERE
+            sys_user.mobilephone = #{mobilephone}
+    </select>
+    <select id="getByEmail" resultType="com.soraka.admin.model.domain.UserDO">
+        SELECT
+            <include refid="all_fields"/>
+        FROM
+            sys_user
+        WHERE
+            sys_user.email = #{email}
+    </select>
     <select id="find" resultType="com.soraka.admin.model.domain.UserDO" parameterType="com.soraka.admin.model.dto.QueryParam">
         SELECT
             <include refid="all_fields"/>
