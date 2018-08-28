@@ -22,6 +22,11 @@ public class RoleDO extends BaseDO {
     private String name;
 
     /**
+     * 角色key
+     */
+    private String key;
+
+    /**
      * 描述
      */
     private String description;

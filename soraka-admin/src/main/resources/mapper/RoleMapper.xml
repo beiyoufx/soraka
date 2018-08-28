@@ -32,6 +32,7 @@
     <sql id="all_fields">
         role.id,
         role.name,
+        role.key,
         role.description,
         role.status,
         role.create_user,

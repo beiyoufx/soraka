@@ -60,7 +60,11 @@ public class UserServiceImpl implements UserService {
      */
     @Override
     public UserDO getByUsername(String username) {
-        return userDAO.getByUsername(username);
+        UserDO userDO = userDAO.getByUsername(username);
+        if (userDO != null) {
+            userDO.setRoles(roleService.findByUserId(userDO.getId()));
+        }
+        return userDO;
     }
 
     /**
@@ -71,7 +75,11 @@ public class UserServiceImpl implements UserService {
      */
     @Override
     public UserDO getByMobilephone(String mobilephone) {
-        return userDAO.getByMobilephone(mobilephone);
+        UserDO userDO = userDAO.getByMobilephone(mobilephone);
+        if (userDO != null) {
+            userDO.setRoles(roleService.findByUserId(userDO.getId()));
+        }
+        return userDO;
     }
 
     /**
@@ -82,7 +90,11 @@ public class UserServiceImpl implements UserService {
      */
     @Override
     public UserDO getByEmail(String email) {
-        return userDAO.getByEmail(email);
+        UserDO userDO = userDAO.getByEmail(email);
+        if (userDO != null) {
+            userDO.setRoles(roleService.findByUserId(userDO.getId()));
+        }
+        return userDO;
     }
 
     /**
@@ -142,6 +154,8 @@ public class UserServiceImpl implements UserService {
             return r;
         }
         UserInfo userInfo = new UserInfo();
+        //Todo 实现凭证
+        userInfo.setToken("demo-token");
         userInfo.setUser(user);
         userInfo.setPermissions(menuService.getUserPermission(user.getId()));
         r.setData(userInfo);
