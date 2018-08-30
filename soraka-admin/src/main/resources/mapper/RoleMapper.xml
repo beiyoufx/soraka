@@ -2,12 +2,23 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.soraka.admin.dao.RoleDAO">
-
+    <!--所有字段-->
+    <sql id="all_fields">
+        sys_role.id,
+        sys_role.name,
+        sys_role.key,
+        sys_role.description,
+        sys_role.status,
+        sys_role.create_user,
+        sys_role.modify_user,
+        sys_role.create_time,
+        sys_role.modify_time
+    </sql>
     <select id="get" resultType="com.soraka.admin.model.domain.RoleDO" parameterType="java.lang.Long">
         SELECT
             <include refid="all_fields"/>
         FROM
-            sys_role role
+            sys_role
         WHERE
             id = #{id}
     </select>
@@ -15,29 +26,78 @@
         SELECT
         <include refid="all_fields"/>
         FROM
-        sys_role AS role
-        JOIN sys_user_role AS ur ON ur.role_id = role.id
+        sys_role
+        JOIN sys_user_role AS ur ON ur.role_id = sys_role.id
         WHERE
         ur.user_id = #{userId}
     </select>
-    <select id="findAll" resultType="com.soraka.admin.model.domain.RoleDO" parameterType="java.lang.Long">
+    <select id="find" resultType="com.soraka.admin.model.domain.RoleDO" parameterType="com.soraka.admin.model.dto.QueryParam">
         SELECT
         <include refid="all_fields"/>
         FROM
-        sys_role AS role
+        sys_role
+        <where>
+            <if test="queryText != null and queryText.trim() != ''">
+                OR name = #{queryText}
+                OR key = #{queryText}
+                OR description = #{queryText}
+            </if>
+        </where>
+        <choose>
+            <when test="sort != null and sort.trim() != ''">
+                ORDER BY ${sort} ${order}
+            </when>
+            <otherwise>
+                ORDER BY sys_role.id DESC
+            </otherwise>
+        </choose>
+        <if test="offset != null and limit != null">
+            LIMIT #{offset}, #{limit}
+        </if>
     </select>
-    <select id="countAll" resultType="java.lang.Integer">
-        SELECT COUNT(*) FROM sys_role
+    <select id="count" resultType="java.lang.Integer" parameterType="com.soraka.admin.model.dto.QueryParam">
+        SELECT COUNT(*) FROM
+        sys_role
+        <where>
+            <if test="queryText != null and queryText.trim() != ''">
+                AND name = #{queryText}
+                OR key = #{queryText}
+                OR description = #{queryText}
+            </if>
+        </where>
     </select>
-    <sql id="all_fields">
-        role.id,
-        role.name,
-        role.key,
-        role.description,
-        role.status,
-        role.create_user,
-        role.modify_user,
-        role.create_time,
-        role.modify_time
-    </sql>
+    <insert id="save" parameterType="com.soraka.admin.model.domain.RoleDO" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO sys_role (
+            name,
+            `key`,
+            description,
+            status,
+            create_user,
+            modify_user
+        )
+        VALUES
+        (
+            #{name},
+            #{key},
+            #{description},
+            #{status},
+            #{createUser},
+            #{modifyUser}
+        )
+    </insert>
+    <update id="update" parameterType="com.soraka.admin.model.domain.RoleDO">
+        UPDATE sys_role
+        <set>
+            <if test="name != null">name = #{name}, </if>
+            <if test="key != null">`key` = #{key}, </if>
+            <if test="description != null">description = #{description}, </if>
+            <if test="status != null">status = #{status}, </if>
+            <if test="modifyUser != null">modify_user = #{modifyUser}, </if>
+            modify_time = now()
+        </set>
+        WHERE id = #{id}
+    </update>
+    <delete id="delete" parameterType="java.lang.Long">
+        DELETE FROM sys_role WHERE id = #{id}
+    </delete>
 </mapper>

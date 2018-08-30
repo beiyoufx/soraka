@@ -2,15 +2,16 @@ package com.soraka.admin.controller;
 
 import com.soraka.admin.model.domain.RoleDO;
 import com.soraka.admin.model.dto.Page;
+import com.soraka.admin.model.dto.QueryParam;
 import com.soraka.admin.model.dto.R;
 import com.soraka.admin.service.RoleService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
+import java.util.List;
 
 /**
  * @author yongjie.teng
@@ -24,15 +25,6 @@ public class RoleController extends BaseController {
     @Autowired
     private RoleService roleService;
 
-    @GetMapping
-    @ApiOperation("获取所有角色")
-    public R findAll() {
-        Page page = roleService.findPage();
-        R r = R.success();
-        r.setData(page);
-        return r;
-    }
-
     @GetMapping("{id}")
     @ApiOperation("获取角色详情")
     public R get(@PathVariable("id") Long id) {
@@ -40,5 +32,32 @@ public class RoleController extends BaseController {
         R r = R.success();
         r.setData(role);
         return r;
+    }
+
+    @GetMapping
+    @ApiOperation("查询角色列表")
+    public R find(QueryParam queryParam) {
+        Page page = roleService.findPage(queryParam);
+        R r = R.success();
+        r.setData(page);
+        return r;
+    }
+
+    @PostMapping
+    @ApiOperation("添加角色")
+    public R save(@Valid @RequestBody RoleDO roleDO) {
+        return R.operate(roleService.save(roleDO));
+    }
+
+    @PutMapping
+    @ApiOperation("更新角色信息")
+    public R update(@RequestBody RoleDO roleDO) {
+        return R.operate(roleService.update(roleDO));
+    }
+
+    @DeleteMapping("{id}")
+    @ApiOperation(value = "删除角色", notes = "根据角色ID删除")
+    public R delete(@PathVariable("id") Long id) {
+        return R.operate(roleService.delete(id));
     }
 }

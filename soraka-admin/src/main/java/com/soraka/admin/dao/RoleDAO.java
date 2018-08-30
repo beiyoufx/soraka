@@ -1,6 +1,7 @@
 package com.soraka.admin.dao;
 
 import com.soraka.admin.model.domain.RoleDO;
+import com.soraka.admin.model.dto.QueryParam;
 
 import java.util.List;
 
@@ -29,16 +30,42 @@ public interface RoleDAO {
     List<RoleDO> findByUserId(Long userId);
 
     /**
-     * 获取所有角色
+     * 查询角色列表
      *
+     * @param param 查询参数
      * @return List<RoleDO>
      */
-    List<RoleDO> findAll();
+    List<RoleDO> find(QueryParam param);
 
     /**
-     * 获取角色总数
+     * 查询角色列表条数
      *
+     * @param param 查询参数
      * @return {@link Integer}
      */
-    Integer countAll();
+    Integer count(QueryParam param);
+
+    /**
+     * 新增角色
+     *
+     * @param roleDO
+     * @return true 成功 false 失败
+     */
+    Integer save(RoleDO roleDO);
+
+    /**
+     * 更新角色
+     *
+     * @param roleDO
+     * @return true 成功 false 失败
+     */
+    Integer update(RoleDO roleDO);
+
+    /**
+     * 删除角色
+     *
+     * @param id 角色ID
+     * @return true 成功 false 失败
+     */
+    Integer delete(Long id);
 }

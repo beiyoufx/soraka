@@ -3,6 +3,7 @@ package com.soraka.admin.service.impl;
 import com.soraka.admin.dao.RoleDAO;
 import com.soraka.admin.model.domain.RoleDO;
 import com.soraka.admin.model.dto.Page;
+import com.soraka.admin.model.dto.QueryParam;
 import com.soraka.admin.service.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -53,27 +54,62 @@ public class RoleServiceImpl implements RoleService {
     @Transactional(readOnly = true, rollbackFor = {RuntimeException.class})
     @Override
     public List<RoleDO> findAll() {
-        return roleDAO.findAll();
+        return roleDAO.find(new QueryParam());
     }
 
     /**
-     * 获取所有角色页
+     * 查询角色列表页
      *
+     * @param queryParam 查询参数
      * @return {@link Page}
      */
     @Transactional(readOnly = true, rollbackFor = {RuntimeException.class})
     @Override
-    public Page findPage() {
+    public Page findPage(QueryParam queryParam) {
         Page page = new Page();
         List<RoleDO> roles;
-        int total = roleDAO.countAll();
+        int total = roleDAO.count(queryParam);
         page.setTotal(total);
         if (total > 0) {
-            roles = roleDAO.findAll();
+            roles = roleDAO.find(queryParam);
             page.setRows(roles);
         } else {
             page.setRows(new ArrayList<>());
         }
         return page;
     }
+
+    /**
+     * 新增角色
+     *
+     * @param roleDO
+     * @return true 成功 false 失败
+     */
+    @Override
+    public boolean save(RoleDO roleDO) {
+        return roleDAO.save(roleDO) > 0;
+    }
+
+    /**
+     * 更新角色
+     *
+     * @param roleDO
+     * @return true 成功 false 失败
+     */
+    @Override
+    public boolean update(RoleDO roleDO) {
+        return roleDAO.update(roleDO) > 0;
+    }
+
+    /**
+     * 删除角色
+     *
+     * @param id 角色ID
+     * @return true 成功 false 失败
+     */
+    @Override
+    public boolean delete(Long id) {
+        return roleDAO.delete(id) > 0;
+    }
+
 }

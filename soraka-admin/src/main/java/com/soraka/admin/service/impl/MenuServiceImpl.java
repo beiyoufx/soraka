@@ -73,6 +73,7 @@ public class MenuServiceImpl implements MenuService {
      * @param queryParam 查询参数
      * @return {@link Page}
      */
+    @Transactional(readOnly = true, rollbackFor = {RuntimeException.class})
     @Override
     public Page findPage(QueryParam queryParam) {
         Page page = new Page();
