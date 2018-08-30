@@ -56,11 +56,19 @@ public interface UserService {
     Page findPage(QueryParam queryParam);
 
     /**
-     * 登录
+     * 生成随机盐值
      *
-     * @param username 用户名/手机/邮箱
-     * @param password 密码
-     * @return
+     * @return 盐值
      */
-    R login(String username, String password);
+    String randomSalt();
+
+    /**
+     * 生成用户密码加密串
+     *
+     * @param username 用户名
+     * @param password 密码
+     * @param salt 盐值
+     * @return 加密密码串
+     */
+    String encryptPassword(String username, String password, String salt);
 }
