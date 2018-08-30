@@ -1,10 +1,12 @@
 package com.soraka.admin.controller;
 
+import com.soraka.admin.model.domain.RoleDO;
 import com.soraka.admin.model.domain.UserDO;
 import com.soraka.admin.model.dto.Page;
 import com.soraka.admin.model.dto.QueryParam;
 import com.soraka.admin.model.dto.R;
 import com.soraka.admin.model.vo.UserVO;
+import com.soraka.admin.service.RoleService;
 import com.soraka.admin.service.UserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
@@ -13,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 
 /**
  * @author yongjie.teng
@@ -25,6 +28,8 @@ import javax.validation.Valid;
 public class UserController extends BaseController {
     @Autowired
     private UserService userService;
+    @Autowired
+    private RoleService roleService;
 
     @GetMapping("{id}")
     @ApiOperation("获取用户详情")
@@ -32,6 +37,15 @@ public class UserController extends BaseController {
         UserDO user = userService.get(id);
         R r = R.success();
         r.setData(user);
+        return r;
+    }
+
+    @GetMapping("{id}/role")
+    @ApiOperation("获取用户角色详情")
+    public R getUserRole(@PathVariable("id") Long id) {
+        List<RoleDO> roles = roleService.findByUserId(id);
+        R r = R.success();
+        r.setData(roles);
         return r;
     }
 
