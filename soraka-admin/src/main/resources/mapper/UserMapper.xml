@@ -2,7 +2,24 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.soraka.admin.dao.UserDAO">
-
+    <!--所有字段-->
+    <sql id="all_fields">
+        sys_user.id,
+        sys_user.username,
+        sys_user.name,
+        sys_user.mobilephone,
+        sys_user.email,
+        sys_user.password,
+        sys_user.salt,
+        sys_user.gender,
+        sys_user.status,
+        sys_user.dept_id,
+        sys_user.create_user,
+        sys_user.modify_user,
+        sys_user.create_time,
+        sys_user.modify_time,
+        sys_user.deleted
+    </sql>
     <select id="get" resultType="com.soraka.admin.model.domain.UserDO" parameterType="java.lang.Long">
         SELECT
             <include refid="all_fields"/>
@@ -72,21 +89,57 @@
             </if>
         </where>
     </select>
-    <sql id="all_fields">
-        sys_user.id,
-        sys_user.username,
-        sys_user.name,
-        sys_user.mobilephone,
-        sys_user.email,
-        sys_user.password,
-        sys_user.salt,
-        sys_user.gender,
-        sys_user.status,
-        sys_user.dept_id,
-        sys_user.create_user,
-        sys_user.modify_user,
-        sys_user.create_time,
-        sys_user.modify_time,
-        sys_user.deleted
-    </sql>
+    <insert id="save" parameterType="com.soraka.admin.model.domain.UserDO" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO sys_user (
+            username,
+            name,
+            mobilephone,
+            email,
+            password,
+            salt,
+            gender,
+            status,
+            dept_id,
+            create_user,
+            modify_user,
+            create_time,
+            modify_time
+        )
+        VALUES
+            (
+                #{username},
+                #{name},
+                #{mobilephone},
+                #{email},
+                #{password},
+                #{salt},
+                #{gender},
+                #{status},
+                #{deptId},
+                #{createUser},
+                #{modifyUser},
+                now(),
+                now()
+            )
+    </insert>
+    <update id="update" parameterType="com.soraka.admin.model.domain.UserDO">
+        UPDATE sys_user
+        <set>
+            <if test="name != null">name = #{name}, </if>
+            <if test="mobilephone != null">mobilephone = #{mobilephone}, </if>
+            <if test="email != null">email = #{email}, </if>
+            <if test="password != null">password = #{password}, </if>
+            <if test="salt != null">salt = #{salt}, </if>
+            <if test="gender != null">gender = #{gender}, </if>
+            <if test="status != null">status = #{status}, </if>
+            <if test="deptId != null">dept_id = #{deptId}, </if>
+            <if test="deleted != null">deleted = #{deleted}, </if>
+            <if test="modifyUser != null">modify_user = #{modifyUser}, </if>
+            modify_time = now()
+        </set>
+        WHERE id = #{id}
+    </update>
+    <delete id="delete" parameterType="java.lang.Long">
+        DELETE FROM sys_user WHERE id = #{userId}
+    </delete>
 </mapper>

@@ -60,4 +60,28 @@ public interface UserDAO {
      * @return {@link UserDO}
      */
     UserDO getByEmail(String email);
+
+    /**
+     * 新增用户
+     *
+     * @param userDO 用户信息
+     * @return {@link Integer}
+     */
+    Integer save(UserDO userDO);
+
+    /**
+     * 更新用户
+     *
+     * @param userDO 用户信息
+     * @return {@link Integer}
+     */
+    Integer update(UserDO userDO);
+
+    /**
+     * 删除用户
+     *
+     * @param id 用户ID
+     * @return {@link Integer}
+     */
+    Integer delete(Long id);
 }

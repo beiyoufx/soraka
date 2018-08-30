@@ -2,9 +2,10 @@ package com.soraka.admin.service.impl;
 
 import com.soraka.admin.dao.UserDAO;
 import com.soraka.admin.model.domain.UserDO;
+import com.soraka.admin.model.domain.UserRoleDO;
 import com.soraka.admin.model.dto.Page;
 import com.soraka.admin.model.dto.QueryParam;
-import com.soraka.admin.service.RoleService;
+import com.soraka.admin.service.UserRoleService;
 import com.soraka.admin.service.UserService;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.lang.RandomStringUtils;
@@ -27,7 +28,7 @@ public class UserServiceImpl implements UserService {
     @Autowired
     UserDAO userDAO;
     @Autowired
-    RoleService roleService;
+    UserRoleService userRoleService;
 
     /**
      * 根据主键获取用户信息
@@ -35,11 +36,12 @@ public class UserServiceImpl implements UserService {
      * @param id 主键
      * @return {@link UserDO}
      */
+    @Transactional(readOnly = true, rollbackFor = {RuntimeException.class})
     @Override
     public UserDO get(Long id) {
         UserDO userDO = userDAO.get(id);
         if (userDO != null) {
-            userDO.setRoles(roleService.findByUserId(userDO.getId()));
+            userDO.setRoles(userRoleService.findRoleIdsByUserId(userDO.getId()));
         }
         return userDO;
     }
@@ -50,11 +52,12 @@ public class UserServiceImpl implements UserService {
      * @param username 用户名
      * @return {@link UserDO}
      */
+    @Transactional(readOnly = true, rollbackFor = {RuntimeException.class})
     @Override
     public UserDO getByUsername(String username) {
         UserDO userDO = userDAO.getByUsername(username);
         if (userDO != null) {
-            userDO.setRoles(roleService.findByUserId(userDO.getId()));
+            userDO.setRoles(userRoleService.findRoleIdsByUserId(userDO.getId()));
         }
         return userDO;
     }
@@ -65,11 +68,12 @@ public class UserServiceImpl implements UserService {
      * @param mobilephone 手机号
      * @return {@link UserDO}
      */
+    @Transactional(readOnly = true, rollbackFor = {RuntimeException.class})
     @Override
     public UserDO getByMobilephone(String mobilephone) {
         UserDO userDO = userDAO.getByMobilephone(mobilephone);
         if (userDO != null) {
-            userDO.setRoles(roleService.findByUserId(userDO.getId()));
+            userDO.setRoles(userRoleService.findRoleIdsByUserId(userDO.getId()));
         }
         return userDO;
     }
@@ -80,11 +84,12 @@ public class UserServiceImpl implements UserService {
      * @param email 邮箱
      * @return {@link UserDO}
      */
+    @Transactional(readOnly = true, rollbackFor = {RuntimeException.class})
     @Override
     public UserDO getByEmail(String email) {
         UserDO userDO = userDAO.getByEmail(email);
         if (userDO != null) {
-            userDO.setRoles(roleService.findByUserId(userDO.getId()));
+            userDO.setRoles(userRoleService.findRoleIdsByUserId(userDO.getId()));
         }
         return userDO;
     }
@@ -95,6 +100,7 @@ public class UserServiceImpl implements UserService {
      * @param queryParam 查询参数
      * @return {@link Page}
      */
+    @Transactional(readOnly = true, rollbackFor = {RuntimeException.class})
     @Override
     public Page findPage(@NotNull QueryParam queryParam) {
         Page page = new Page();
@@ -131,5 +137,74 @@ public class UserServiceImpl implements UserService {
     @Override
     public String encryptPassword(String username, String password, String salt) {
         return DigestUtils.md5Hex(username + password + salt);
+    }
+
+    /**
+     * 新增用户
+     *
+     * @param userDO
+     * @return true 成功 false 失败
+     */
+    @Override
+    public boolean save(UserDO userDO) {
+        int count = userDAO.save(userDO);
+        if (count < 1) {
+            return false;
+        }
+        Long userId = userDO.getId();
+        userRoleService.deleteByUserId(userId);
+        List<Long> roleIds = userDO.getRoles();
+        List<UserRoleDO> userRoles = new ArrayList<>();
+        for (Long roleId : roleIds) {
+            UserRoleDO ur = new UserRoleDO();
+            ur.setUserId(userId);
+            ur.setRoleId(roleId);
+            userRoles.add(ur);
+        }
+        if (!userRoles.isEmpty()) {
+            userRoleService.batchSave(userRoles);
+        }
+        return true;
+    }
+
+    /**
+     * 更新用户
+     *
+     * @param userDO
+     * @return true 成功 false 失败
+     */
+    @Override
+    public boolean update(UserDO userDO) {
+        int count = userDAO.update(userDO);
+        if (count < 1) {
+            return false;
+        }
+        Long userId = userDO.getId();
+        userRoleService.deleteByUserId(userId);
+        List<Long> roleIds = userDO.getRoles();
+        List<UserRoleDO> userRoles = new ArrayList<>();
+        for (Long roleId : roleIds) {
+            UserRoleDO ur = new UserRoleDO();
+            ur.setUserId(userId);
+            ur.setRoleId(roleId);
+            userRoles.add(ur);
+        }
+        if (!userRoles.isEmpty()) {
+            userRoleService.batchSave(userRoles);
+        }
+        return true;
+    }
+
+    /**
+     * 删除用户
+     *
+     * @param id 用户ID
+     * @return true 成功 false 失败
+     */
+    @Override
+    public boolean delete(Long id) {
+        userDAO.delete(id);
+        userRoleService.deleteByUserId(id);
+        return true;
     }
 }

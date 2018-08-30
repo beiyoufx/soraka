@@ -6,6 +6,7 @@ import com.soraka.admin.model.dto.Page;
 import com.soraka.admin.service.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,6 +16,7 @@ import java.util.List;
  * @date 2018/8/16
  * @package com.soraka.admin.service.impl
  */
+@Transactional(rollbackFor = {RuntimeException.class})
 @Service
 public class RoleServiceImpl implements RoleService {
     @Autowired
@@ -25,6 +27,7 @@ public class RoleServiceImpl implements RoleService {
      * @param id 主键
      * @return {@link RoleDO}
      */
+    @Transactional(readOnly = true, rollbackFor = {RuntimeException.class})
     @Override
     public RoleDO get(Long id) {
         return roleDAO.get(id);
@@ -36,20 +39,10 @@ public class RoleServiceImpl implements RoleService {
      * @param userId 用户主键
      * @return List<RoleDO>
      */
+    @Transactional(readOnly = true, rollbackFor = {RuntimeException.class})
     @Override
     public List<RoleDO> findByUserId(Long userId) {
         return roleDAO.findByUserId(userId);
-    }
-
-    /**
-     * 获取用户角色ID集合
-     *
-     * @param userId 用户主键
-     * @return List<Long>
-     */
-    @Override
-    public List<Long> findRoleIdsByUserId(Long userId) {
-        return roleDAO.findRoleIdsByUserId(userId);
     }
 
     /**
@@ -57,6 +50,7 @@ public class RoleServiceImpl implements RoleService {
      *
      * @return List<RoleDO>
      */
+    @Transactional(readOnly = true, rollbackFor = {RuntimeException.class})
     @Override
     public List<RoleDO> findAll() {
         return roleDAO.findAll();
@@ -67,6 +61,7 @@ public class RoleServiceImpl implements RoleService {
      *
      * @return {@link Page}
      */
+    @Transactional(readOnly = true, rollbackFor = {RuntimeException.class})
     @Override
     public Page findPage() {
         Page page = new Page();

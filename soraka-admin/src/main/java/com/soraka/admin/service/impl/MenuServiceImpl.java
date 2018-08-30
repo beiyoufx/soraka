@@ -5,6 +5,7 @@ import com.soraka.admin.model.domain.MenuDO;
 import com.soraka.admin.service.MenuService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 
@@ -28,6 +29,7 @@ public class MenuServiceImpl implements MenuService {
      * @param id 主键
      * @return {@link MenuDO}
      */
+    @Transactional(readOnly = true, rollbackFor = {RuntimeException.class})
     @Override
     public MenuDO get(Long id) {
         return menuDAO.get(id);
@@ -39,11 +41,11 @@ public class MenuServiceImpl implements MenuService {
      * @param userId 用户ID
      * @return List<MenuDO>
      */
+    @Transactional(readOnly = true, rollbackFor = {RuntimeException.class})
     @Override
     public List<MenuDO> findByUserId(Long userId) {
         return menuDAO.findByUserId(userId);
     }
-
 
     /**
      * 获取用户权限集合
@@ -51,6 +53,7 @@ public class MenuServiceImpl implements MenuService {
      * @param userId 用户ID
      * @return List<MenuDO>
      */
+    @Transactional(readOnly = true, rollbackFor = {RuntimeException.class})
     @Override
     public List<String> getUserPermission(Long userId) {
         List<MenuDO> menus = findByUserId(userId);

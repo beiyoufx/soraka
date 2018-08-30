@@ -2,6 +2,7 @@ package com.soraka.admin.model.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
+import org.hibernate.validator.constraints.NotBlank;
 
 import java.util.List;
 
@@ -22,6 +23,7 @@ public class UserDO extends BaseDO {
     /**
      * 用户名
      */
+    @NotBlank(message = "username must not be blank.")
     private String username;
 
     /**
@@ -72,7 +74,7 @@ public class UserDO extends BaseDO {
     private Boolean deleted;
 
     /**
-     * 角色集合
+     * 角色ID集合
      */
-    private List<RoleDO> roles;
+    private List<Long> roles;
 }

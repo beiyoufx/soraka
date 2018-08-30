@@ -71,4 +71,28 @@ public interface UserService {
      * @return 加密密码串
      */
     String encryptPassword(String username, String password, String salt);
+
+    /**
+     * 新增用户
+     *
+     * @param userDO
+     * @return true 成功 false 失败
+     */
+    boolean save(UserDO userDO);
+
+    /**
+     * 更新用户
+     *
+     * @param userDO
+     * @return true 成功 false 失败
+     */
+    boolean update(UserDO userDO);
+
+    /**
+     * 删除用户
+     *
+     * @param id 用户ID
+     * @return true 成功 false 失败
+     */
+    boolean delete(Long id);
 }
