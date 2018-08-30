@@ -37,6 +37,10 @@ public class R implements Serializable {
         return new R(BuzCode.FAILED.getCode(), BuzCode.FAILED.getMessage());
     }
 
+    public static R operate(boolean isSucceed) {
+        return isSucceed ? success() : fail();
+    }
+
     public R() {
     }
 

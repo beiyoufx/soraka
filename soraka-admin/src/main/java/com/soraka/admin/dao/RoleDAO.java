@@ -41,4 +41,12 @@ public interface RoleDAO {
      * @return {@link Integer}
      */
     Integer countAll();
+
+    /**
+     * 获取用户角色ID集合
+     *
+     * @param userId 用户主键
+     * @return List<Long>
+     */
+    List<Long> findRoleIdsByUserId(Long userId);
 }

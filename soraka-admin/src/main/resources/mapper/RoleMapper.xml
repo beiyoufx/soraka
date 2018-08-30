@@ -20,6 +20,14 @@
         WHERE
         ur.user_id = #{userId}
     </select>
+    <select id="findRoleIdsByUserId" resultType="java.lang.Long" parameterType="java.lang.Long">
+        SELECT
+            role_id
+        FROM
+            sys_user_role
+        WHERE
+            user_id = #{userId}
+    </select>
     <select id="findAll" resultType="com.soraka.admin.model.domain.RoleDO" parameterType="java.lang.Long">
         SELECT
         <include refid="all_fields"/>

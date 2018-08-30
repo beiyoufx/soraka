@@ -42,6 +42,17 @@ public class RoleServiceImpl implements RoleService {
     }
 
     /**
+     * 获取用户角色ID集合
+     *
+     * @param userId 用户主键
+     * @return List<Long>
+     */
+    @Override
+    public List<Long> findRoleIdsByUserId(Long userId) {
+        return roleDAO.findRoleIdsByUserId(userId);
+    }
+
+    /**
      * 获取所有角色
      *
      * @return List<RoleDO>
