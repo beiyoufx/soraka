@@ -14,7 +14,7 @@ public class DeptDO extends BaseDO {
     /**
      * 主键
      */
-    private String id;
+    private Long id;
 
     /**
      * 部门名称
@@ -24,20 +24,20 @@ public class DeptDO extends BaseDO {
     /**
      * 父部门ID
      */
-    private String parentId;
+    private Long parentId;
 
     /**
      * 状态：0不可用1可用
      */
-    private String status;
+    private Integer status;
 
     /**
      * 排序
      */
-    private String sequence;
+    private Integer sequence;
 
     /**
      * 是否已删除
      */
-    private String deleted;
+    private Boolean deleted;
 }

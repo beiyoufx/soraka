@@ -1,5 +1,6 @@
 package com.soraka.admin.model.domain;
 
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -28,10 +29,12 @@ public abstract class BaseDO implements Serializable {
     /**
      * 创建时间
      */
+    @ApiModelProperty(value = "字符串日期", example = "2018-05-09 12:00:00")
     private Date createTime;
 
     /**
      * 修改时间
      */
+    @ApiModelProperty(value = "字符串日期", example = "2018-05-09 12:00:00")
     private Date modifyTime;
 }

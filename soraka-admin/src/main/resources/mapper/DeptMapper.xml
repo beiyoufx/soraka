@@ -2,15 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.soraka.admin.dao.DeptDAO">
-
-    <select id="get" resultType="com.soraka.admin.model.domain.DeptDO" parameterType="java.lang.Long">
-        SELECT
-            <include refid="all_fields"/>
-        FROM
-            sys_dept
-        WHERE
-            id = #{id}
-    </select>
+    <!--所有字段-->
     <sql id="all_fields">
         id,
         name,
@@ -23,4 +15,77 @@
         create_time,
         modify_time
     </sql>
+    <select id="get" resultType="com.soraka.admin.model.domain.DeptDO" parameterType="java.lang.Long">
+        SELECT
+            <include refid="all_fields"/>
+        FROM
+            sys_dept
+        WHERE
+            id = #{id}
+    </select>
+    <select id="find" resultType="com.soraka.admin.model.domain.DeptDO" parameterType="com.soraka.admin.model.dto.QueryParam">
+        SELECT
+        <include refid="all_fields"/>
+        FROM
+        sys_dept
+        <where>
+            <if test="queryText != null and queryText.trim() != ''">
+                OR name = #{queryText}
+            </if>
+        </where>
+        <choose>
+            <when test="sort != null and sort.trim() != ''">
+                ORDER BY ${sort} ${order}
+            </when>
+            <otherwise>
+                ORDER BY sys_dept.id DESC
+            </otherwise>
+        </choose>
+        <if test="offset != null and limit != null">
+            LIMIT #{offset}, #{limit}
+        </if>
+    </select>
+    <select id="count" resultType="java.lang.Integer" parameterType="com.soraka.admin.model.dto.QueryParam">
+        SELECT COUNT(*) FROM
+        sys_dept
+        <where>
+            <if test="queryText != null and queryText.trim() != ''">
+                AND name = #{queryText}
+            </if>
+        </where>
+    </select>
+    <insert id="save" parameterType="com.soraka.admin.model.domain.DeptDO" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO sys_dept (
+            name,
+            parent_id,
+            status,
+            sequence,
+            create_user,
+            modify_user
+        )
+        VALUES
+            (
+                #{name},
+                #{parentId},
+                #{status},
+                #{sequence},
+                #{createUser},
+                #{modifyUser}
+            )
+    </insert>
+    <update id="update" parameterType="com.soraka.admin.model.domain.DeptDO">
+        UPDATE sys_dept
+        <set>
+            <if test="name != null">name = #{name}, </if>
+            <if test="parentId != null">parent_id = #{parentId}, </if>
+            <if test="status != null">status = #{status}, </if>
+            <if test="sequence != null">sequence = #{sequence}, </if>
+            <if test="modifyUser != null">modify_user = #{modifyUser}, </if>
+            modify_time = now()
+        </set>
+        WHERE id = #{id}
+    </update>
+    <delete id="delete" parameterType="java.lang.Long">
+        DELETE FROM sys_dept WHERE id = #{id}
+    </delete>
 </mapper>

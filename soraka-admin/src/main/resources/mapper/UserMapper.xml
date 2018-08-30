@@ -82,10 +82,10 @@
         sys_user
         <where>
             <if test="queryText != null and queryText.trim() != ''">
-                AND username = #{queryText}
-                AND email = #{queryText}
-                AND mobilephone = #{queryText}
-                AND name = #{queryText}
+                OR username = #{queryText}
+                OR email = #{queryText}
+                OR mobilephone = #{queryText}
+                OR name = #{queryText}
             </if>
         </where>
     </select>
@@ -101,9 +101,7 @@
             status,
             dept_id,
             create_user,
-            modify_user,
-            create_time,
-            modify_time
+            modify_user
         )
         VALUES
             (
@@ -117,9 +115,7 @@
                 #{status},
                 #{deptId},
                 #{createUser},
-                #{modifyUser},
-                now(),
-                now()
+                #{modifyUser}
             )
     </insert>
     <update id="update" parameterType="com.soraka.admin.model.domain.UserDO">
@@ -140,6 +136,6 @@
         WHERE id = #{id}
     </update>
     <delete id="delete" parameterType="java.lang.Long">
-        DELETE FROM sys_user WHERE id = #{userId}
+        DELETE FROM sys_user WHERE id = #{id}
     </delete>
 </mapper>
