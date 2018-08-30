@@ -22,7 +22,7 @@ import javax.validation.Valid;
 @RestController
 public class DeptController extends BaseController {
     @Autowired
-    DeptService deptService;
+    private DeptService deptService;
 
     @GetMapping("{id}")
     @ApiOperation("获取部门详情")

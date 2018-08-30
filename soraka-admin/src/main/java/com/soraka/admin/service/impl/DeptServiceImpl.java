@@ -21,7 +21,7 @@ import java.util.List;
 @Service
 public class DeptServiceImpl implements DeptService {
     @Autowired
-    DeptDAO deptDAO;
+    private DeptDAO deptDAO;
 
     /**
      * 通过主键获取部门

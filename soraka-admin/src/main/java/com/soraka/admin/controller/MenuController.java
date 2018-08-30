@@ -1,15 +1,16 @@
 package com.soraka.admin.controller;
 
 import com.soraka.admin.model.domain.MenuDO;
+import com.soraka.admin.model.dto.Page;
+import com.soraka.admin.model.dto.QueryParam;
 import com.soraka.admin.model.dto.R;
 import com.soraka.admin.service.MenuService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
 
 /**
  * @author yongjie.teng
@@ -21,7 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class MenuController extends BaseController {
     @Autowired
-    MenuService menuService;
+    private MenuService menuService;
 
     @GetMapping("{id}")
     @ApiOperation("获取菜单详情")
@@ -30,5 +31,32 @@ public class MenuController extends BaseController {
         R r = R.success();
         r.setData(menu);
         return r;
+    }
+
+    @GetMapping
+    @ApiOperation("查询菜单列表")
+    public R find(QueryParam queryParam) {
+        Page page = menuService.findPage(queryParam);
+        R r = R.success();
+        r.setData(page);
+        return r;
+    }
+
+    @PostMapping
+    @ApiOperation("添加菜单")
+    public R save(@Valid @RequestBody MenuDO menuDO) {
+        return R.operate(menuService.save(menuDO));
+    }
+
+    @PutMapping
+    @ApiOperation("更新菜单信息")
+    public R update(@RequestBody MenuDO menuDO) {
+        return R.operate(menuService.update(menuDO));
+    }
+
+    @DeleteMapping("{id}")
+    @ApiOperation(value = "删除菜单", notes = "根据菜单ID删除")
+    public R delete(@PathVariable("id") Long id) {
+        return R.operate(menuService.delete(id));
     }
 }

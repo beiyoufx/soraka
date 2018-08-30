@@ -26,9 +26,9 @@ import java.util.List;
 @Service
 public class UserServiceImpl implements UserService {
     @Autowired
-    UserDAO userDAO;
+    private UserDAO userDAO;
     @Autowired
-    UserRoleService userRoleService;
+    private UserRoleService userRoleService;
 
     /**
      * 根据主键获取用户信息

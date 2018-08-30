@@ -31,9 +31,9 @@ import javax.validation.Valid;
 @RestController
 public class LoginController extends BaseController {
     @Autowired
-    UserService userService;
+    private UserService userService;
     @Autowired
-    MenuService menuService;
+    private MenuService menuService;
 
     @ApiOperation("登录接口")
     @PostMapping("login")

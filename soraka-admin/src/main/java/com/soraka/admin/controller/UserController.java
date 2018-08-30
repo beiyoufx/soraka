@@ -24,7 +24,7 @@ import javax.validation.Valid;
 @RestController
 public class UserController extends BaseController {
     @Autowired
-    UserService userService;
+    private UserService userService;
 
     @GetMapping("{id}")
     @ApiOperation("获取用户详情")

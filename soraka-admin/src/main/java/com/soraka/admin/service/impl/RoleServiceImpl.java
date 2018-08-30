@@ -20,7 +20,7 @@ import java.util.List;
 @Service
 public class RoleServiceImpl implements RoleService {
     @Autowired
-    RoleDAO roleDAO;
+    private RoleDAO roleDAO;
     /**
      * 根据主键获取角色
      *

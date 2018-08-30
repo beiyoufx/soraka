@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class RoleController extends BaseController {
     @Autowired
-    RoleService roleService;
+    private RoleService roleService;
 
     @GetMapping
     @ApiOperation("获取所有角色")
