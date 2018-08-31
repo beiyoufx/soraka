@@ -1,5 +1,6 @@
 package com.soraka.admin.model.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -33,6 +34,7 @@ public class QueryParam implements Serializable {
     /**
      * 偏移量
      */
+    @JsonIgnore
     private Integer offset;
 
     /**
