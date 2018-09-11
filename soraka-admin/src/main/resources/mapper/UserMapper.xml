@@ -98,7 +98,6 @@
             password,
             salt,
             gender,
-            status,
             dept_id,
             create_user,
             modify_user
@@ -112,7 +111,6 @@
                 #{password},
                 #{salt},
                 #{gender},
-                #{status},
                 #{deptId},
                 #{createUser},
                 #{modifyUser}

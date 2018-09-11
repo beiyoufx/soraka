@@ -11,6 +11,7 @@ import com.soraka.admin.service.UserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -69,8 +70,10 @@ public class UserController extends BaseController {
     @PutMapping
     @ApiOperation("更新用户信息")
     public R update(@RequestBody UserVO userVO) {
-        userVO.setSalt(userService.randomSalt());
-        userVO.setPassword(userService.encryptPassword(userVO.getUsername(), userVO.getNewPassword(), userVO.getSalt()));
+        if (StringUtils.isNotBlank(userVO.getNewPassword())) {
+            userVO.setSalt(userService.randomSalt());
+            userVO.setPassword(userService.encryptPassword(userVO.getUsername(), userVO.getNewPassword(), userVO.getSalt()));
+        }
         return R.operate(userService.update(userVO));
     }
 
