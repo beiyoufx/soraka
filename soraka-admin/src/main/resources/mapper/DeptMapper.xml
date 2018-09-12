@@ -58,7 +58,6 @@
         INSERT INTO sys_dept (
             name,
             parent_id,
-            status,
             sequence,
             create_user,
             modify_user
@@ -67,7 +66,6 @@
             (
                 #{name},
                 #{parentId},
-                #{status},
                 #{sequence},
                 #{createUser},
                 #{modifyUser}

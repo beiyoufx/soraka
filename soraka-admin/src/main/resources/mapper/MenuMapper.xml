@@ -75,8 +75,7 @@
             ico,
             level,
             parent_id,
-            sequence,
-            status
+            sequence
         )
         VALUES
         (
@@ -87,8 +86,7 @@
             #{ico},
             #{level},
             #{parentId},
-            #{sequence},
-            #{status}
+            #{sequence}
         )
     </insert>
     <update id="update" parameterType="com.soraka.admin.model.domain.MenuDO">

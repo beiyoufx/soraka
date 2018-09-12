@@ -71,7 +71,6 @@
             name,
             `key`,
             description,
-            status,
             create_user,
             modify_user
         )
@@ -80,7 +79,6 @@
             #{name},
             #{key},
             #{description},
-            #{status},
             #{createUser},
             #{modifyUser}
         )
