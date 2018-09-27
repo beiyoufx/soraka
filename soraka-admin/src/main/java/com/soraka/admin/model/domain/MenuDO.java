@@ -22,6 +22,17 @@ public class MenuDO extends BaseDO {
     private String name;
 
     /**
+     * 重定向地址，在面包屑中点击会重定向去的地址
+     * 当设置 noredirect 的时候该路由在面包屑导航中不可被点击
+     */
+    private String redirect;
+
+    /**
+     * 组件
+     */
+    private String component;
+
+    /**
      * 类型：1菜单2按钮
      */
     private Integer type;

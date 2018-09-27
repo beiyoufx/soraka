@@ -71,4 +71,12 @@ public interface MenuService {
      * @return true 成功 false 失败
      */
     boolean delete(Long id);
+
+    /**
+     * 查询角色菜单
+     *
+     * @param roleKeys 角色键值
+     * @return 菜单列表
+     */
+    List<MenuDO> getRoleMenu(List<String> roleKeys);
 }

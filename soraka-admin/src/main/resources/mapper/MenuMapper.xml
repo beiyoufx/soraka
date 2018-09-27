@@ -6,6 +6,7 @@
     <sql id="all_fields">
         sys_menu.id,
         sys_menu.name,
+        sys_menu.component,
         sys_menu.type,
         sys_menu.url,
         sys_menu.permission,
@@ -108,4 +109,19 @@
     <delete id="delete" parameterType="java.lang.Long">
         DELETE FROM sys_menu WHERE id = #{id}
     </delete>
+
+    <select id="getRoleMenu" resultType="com.soraka.admin.model.domain.MenuDO" parameterType="java.lang.String">
+        SELECT
+            DISTINCT
+            <include refid="all_fields"/>
+        FROM
+            sys_menu
+        JOIN sys_role_menu um ON um.menu_id = sys_menu.id
+        JOIN sys_role ro ON um.role_id = ro.id
+        WHERE
+            ro.key IN
+            <foreach collection="roleKeys" item="roleKey" open="(" close=")" separator=",">
+                #{roleKey}
+            </foreach>
+    </select>
 </mapper>

@@ -121,4 +121,15 @@ public class MenuServiceImpl implements MenuService {
     public boolean delete(Long id) {
         return menuDAO.delete(id) > 0;
     }
+
+    /**
+     * 查询角色菜单
+     *
+     * @param roleKeys 角色键值
+     * @return 菜单列表
+     */
+    @Override
+    public List<MenuDO> getRoleMenu(List<String> roleKeys) {
+        return menuDAO.getRoleMenu(roleKeys);
+    }
 }

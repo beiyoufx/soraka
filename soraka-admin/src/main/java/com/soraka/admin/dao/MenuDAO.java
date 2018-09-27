@@ -2,6 +2,7 @@ package com.soraka.admin.dao;
 
 import com.soraka.admin.model.domain.MenuDO;
 import com.soraka.admin.model.dto.QueryParam;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -68,4 +69,12 @@ public interface MenuDAO {
      * @return true 成功 false 失败
      */
     Integer delete(Long id);
+
+    /**
+     * 查询角色菜单
+     *
+     * @param roleKeys 角色键值
+     * @return 菜单列表
+     */
+    List<MenuDO> getRoleMenu(@Param("roleKeys") List<String> roleKeys);
 }
