@@ -39,16 +39,6 @@ public class VueRouter extends TreeNode {
     private Integer sort;
 
     /**
-     * 不在侧边栏线上
-     */
-    private boolean hidden = false;
-
-    /**
-     * 一直显示根路由
-     */
-    private boolean alwaysShow = true;
-
-    /**
      * 元信息
      */
     private Meta meta;
