@@ -22,6 +22,11 @@ public class DeptDO extends BaseDO {
     private String name;
 
     /**
+     * 部门编码
+     */
+    private String code;
+
+    /**
      * 父部门ID
      */
     private Long parentId;

@@ -4,13 +4,19 @@ import com.soraka.admin.model.domain.DeptDO;
 import com.soraka.admin.model.dto.Page;
 import com.soraka.admin.model.dto.QueryParam;
 import com.soraka.admin.model.dto.R;
+import com.soraka.admin.model.vo.DeptTreeVO;
 import com.soraka.admin.service.DeptService;
+import com.soraka.admin.util.TreeUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
 
 /**
  * @author yongjie.teng
@@ -58,5 +64,19 @@ public class DeptController extends BaseController {
     @ApiOperation(value = "删除部门", notes = "根据部门ID删除")
     public R delete(@PathVariable("id") Long id) {
         return R.operate(deptService.delete(id));
+    }
+
+    @GetMapping("tree")
+    @ApiOperation("查询部门树")
+    public R findDeptTree() {
+        R r = R.success();
+        List<DeptDO> depts = deptService.findAll();
+        List<DeptTreeVO> deptTrees = new ArrayList<>();
+        depts.forEach(deptDO -> {
+            deptTrees.add(new DeptTreeVO(deptDO));
+        });
+        Collections.sort(deptTrees, Comparator.comparingInt(DeptTreeVO::getSequence));
+        r.setData(TreeUtil.bulid(deptTrees, 0L));
+        return r;
     }
 }

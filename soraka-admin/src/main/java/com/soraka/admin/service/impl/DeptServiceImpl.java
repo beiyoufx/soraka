@@ -89,4 +89,15 @@ public class DeptServiceImpl implements DeptService {
     public boolean delete(Long id) {
         return deptDAO.delete(id) > 0;
     }
+
+    /**
+     * 获取所有部门
+     *
+     * @return List<DeptDO>
+     */
+    @Transactional(readOnly = true, rollbackFor = {RuntimeException.class})
+    @Override
+    public List<DeptDO> findAll() {
+        return deptDAO.find(new QueryParam());
+    }
 }

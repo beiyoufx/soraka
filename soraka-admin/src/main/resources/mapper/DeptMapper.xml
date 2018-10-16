@@ -6,6 +6,7 @@
     <sql id="all_fields">
         id,
         name,
+        code,
         parent_id,
         status,
         sequence,
@@ -57,6 +58,7 @@
     <insert id="save" parameterType="com.soraka.admin.model.domain.DeptDO" useGeneratedKeys="true" keyProperty="id">
         INSERT INTO sys_dept (
             name,
+            code,
             parent_id,
             sequence,
             create_user,
@@ -65,6 +67,7 @@
         VALUES
             (
                 #{name},
+                #{code},
                 #{parentId},
                 #{sequence},
                 #{createUser},
@@ -75,6 +78,7 @@
         UPDATE sys_dept
         <set>
             <if test="name != null">name = #{name}, </if>
+            <if test="code != null">code = #{code}, </if>
             <if test="parentId != null">parent_id = #{parentId}, </if>
             <if test="status != null">status = #{status}, </if>
             <if test="sequence != null">sequence = #{sequence}, </if>

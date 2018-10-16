@@ -5,6 +5,8 @@ import com.soraka.admin.model.dto.Page;
 import com.soraka.admin.model.dto.QueryParam;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * 部门
  *
@@ -53,4 +55,11 @@ public interface DeptService {
      * @return true 成功 false 失败
      */
     boolean delete(Long id);
+
+    /**
+     * 获取所有部门
+     *
+     * @return List<DeptDO>
+     */
+    List<DeptDO> findAll();
 }
