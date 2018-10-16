@@ -10,6 +10,8 @@
 3. 微服务：Spring-cloud Edgware.SR4
 4. 服务发现：Eureka
 5. 网关：Zuul
+6. 数据库：MySQL 5.7.16
+7. 微服务文档：Swagger2 2.7.0
 
 #### 安装教程
 
