@@ -2,8 +2,10 @@ package com.soraka.admin.service.impl;
 
 import com.soraka.admin.dao.RoleDAO;
 import com.soraka.admin.model.domain.RoleDO;
+import com.soraka.admin.model.domain.RoleMenuDO;
 import com.soraka.admin.model.dto.Page;
 import com.soraka.admin.model.dto.QueryParam;
+import com.soraka.admin.service.RoleMenuService;
 import com.soraka.admin.service.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,6 +24,8 @@ import java.util.List;
 public class RoleServiceImpl implements RoleService {
     @Autowired
     private RoleDAO roleDAO;
+    @Autowired
+    private RoleMenuService roleMenuService;
     /**
      * 根据主键获取角色
      *
@@ -87,7 +91,24 @@ public class RoleServiceImpl implements RoleService {
      */
     @Override
     public boolean save(RoleDO roleDO) {
-        return roleDAO.save(roleDO) > 0;
+        int count = roleDAO.save(roleDO);
+        if (count < 1) {
+            return false;
+        }
+        Long roleId = roleDO.getId();
+        roleMenuService.deleteByRoleId(roleId);
+        List<Long> menuIds = roleDO.getMenus();
+        List<RoleMenuDO> roleMenus = new ArrayList<>();
+        for (Long menuId : menuIds) {
+            RoleMenuDO roleMenu = new RoleMenuDO();
+            roleMenu.setRoleId(roleId);
+            roleMenu.setMenuId(menuId);
+            roleMenus.add(roleMenu);
+        }
+        if (!roleMenus.isEmpty()) {
+            roleMenuService.batchSave(roleMenus);
+        }
+        return true;
     }
 
     /**
@@ -98,7 +119,24 @@ public class RoleServiceImpl implements RoleService {
      */
     @Override
     public boolean update(RoleDO roleDO) {
-        return roleDAO.update(roleDO) > 0;
+        int count = roleDAO.update(roleDO);
+        if (count < 1) {
+            return false;
+        }
+        Long roleId = roleDO.getId();
+        roleMenuService.deleteByRoleId(roleId);
+        List<Long> menuIds = roleDO.getMenus();
+        List<RoleMenuDO> roleMenus = new ArrayList<>();
+        for (Long menuId : menuIds) {
+            RoleMenuDO roleMenu = new RoleMenuDO();
+            roleMenu.setRoleId(roleId);
+            roleMenu.setMenuId(menuId);
+            roleMenus.add(roleMenu);
+        }
+        if (!roleMenus.isEmpty()) {
+            roleMenuService.batchSave(roleMenus);
+        }
+        return true;
     }
 
     /**

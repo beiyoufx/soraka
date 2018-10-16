@@ -10,6 +10,8 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 /**
+ * 用户角色
+ *
  * @author yongjie.teng
  * @date 2018/8/30
  * @package com.soraka.admin.service.impl

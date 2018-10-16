@@ -2,6 +2,8 @@ package com.soraka.admin.model.domain;
 
 import lombok.Data;
 
+import java.util.List;
+
 /**
  * 角色
  *
@@ -35,4 +37,9 @@ public class RoleDO extends BaseDO {
      * 状态：0不可用1可用
      */
     private Integer status;
+
+    /**
+     * 菜单ID集合
+     */
+    private List<Long> menus;
 }
