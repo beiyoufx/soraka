@@ -35,7 +35,11 @@ public class RoleServiceImpl implements RoleService {
     @Transactional(readOnly = true, rollbackFor = {RuntimeException.class})
     @Override
     public RoleDO get(Long id) {
-        return roleDAO.get(id);
+        RoleDO roleDO = roleDAO.get(id);
+        if (roleDO != null) {
+            roleDO.setMenus(roleMenuService.findMenuIdsByRoleId(roleDO.getId()));
+        }
+        return roleDO;
     }
 
     /**
