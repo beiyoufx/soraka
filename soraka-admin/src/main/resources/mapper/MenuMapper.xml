@@ -12,7 +12,6 @@
         sys_menu.url,
         sys_menu.permission,
         sys_menu.ico,
-        sys_menu.level,
         sys_menu.parent_id,
         sys_menu.sequence,
         sys_menu.status,
@@ -75,7 +74,6 @@
             url,
             permission,
             ico,
-            level,
             parent_id,
             sequence
         )
@@ -86,7 +84,6 @@
             #{url},
             #{permission},
             #{ico},
-            #{level},
             #{parentId},
             #{sequence}
         )
@@ -99,7 +96,6 @@
             <if test="url != null">url = #{url}, </if>
             <if test="permission != null">permission = #{permission}, </if>
             <if test="ico != null">ico = #{ico}, </if>
-            <if test="level != null">level = #{level}, </if>
             <if test="parentId != null">parent_id = #{parentId}, </if>
             <if test="sequence != null">sequence = #{sequence}, </if>
             <if test="status != null">status = #{status}, </if>

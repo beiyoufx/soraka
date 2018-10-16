@@ -1,21 +1,18 @@
-package com.soraka.admin.model.domain;
+package com.soraka.admin.model.vo;
 
+import com.soraka.admin.model.domain.MenuDO;
+import com.soraka.admin.model.dto.TreeNode;
 import lombok.Data;
 
 /**
- * 菜单
+ * 菜单树
  *
  * @author yongjie.teng
- * @date 2018/8/16
- * @package com.soraka.admin.model.domain
+ * @date 2018/10/15
+ * @package com.soraka.admin.model.vo
  */
 @Data
-public class MenuDO extends BaseDO {
-    /**
-     * 主键
-     */
-    private Long id;
-
+public class MenuTreeVO extends TreeNode {
     /**
      * 名称
      */
@@ -53,11 +50,6 @@ public class MenuDO extends BaseDO {
     private String ico;
 
     /**
-     * 父节点ID
-     */
-    private Long parentId;
-
-    /**
      * 排序
      */
     private Integer sequence;
@@ -66,4 +58,18 @@ public class MenuDO extends BaseDO {
      * 状态：0不可用1可用
      */
     private Integer status;
+
+    public MenuTreeVO(MenuDO menuDO) {
+        setId(menuDO.getId());
+        setParentId(menuDO.getParentId());
+        this.name = menuDO.getName();
+        this.component = menuDO.getComponent();
+        this.url = menuDO.getUrl();
+        this.redirect = menuDO.getRedirect();
+        this.sequence = menuDO.getSequence();
+        this.ico = menuDO.getIco();
+        this.status = menuDO.getStatus();
+        this.permission = menuDO.getPermission();
+        this.type = menuDO.getType();
+    }
 }

@@ -68,6 +68,17 @@ public class MenuServiceImpl implements MenuService {
     }
 
     /**
+     * 获取所有菜单
+     *
+     * @return List<MenuDO>
+     */
+    @Transactional(readOnly = true, rollbackFor = {RuntimeException.class})
+    @Override
+    public List<MenuDO> findAll() {
+        return menuDAO.find(new QueryParam());
+    }
+
+    /**
      * 查询菜单列表页
      *
      * @param queryParam 查询参数

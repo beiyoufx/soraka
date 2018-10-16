@@ -41,6 +41,13 @@ public interface MenuService {
     List<String> getUserPermission(Long userId);
 
     /**
+     * 获取所有菜单
+     *
+     * @return List<MenuDO>
+     */
+    List<MenuDO> findAll();
+
+    /**
      * 查询菜单列表页
      *
      * @param queryParam 查询参数

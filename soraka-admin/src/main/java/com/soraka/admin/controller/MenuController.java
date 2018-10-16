@@ -6,6 +6,7 @@ import com.soraka.admin.model.dto.Page;
 import com.soraka.admin.model.dto.QueryParam;
 import com.soraka.admin.model.dto.R;
 import com.soraka.admin.model.dto.VueRouter;
+import com.soraka.admin.model.vo.MenuTreeVO;
 import com.soraka.admin.service.MenuService;
 import com.soraka.admin.util.TreeUtil;
 import io.swagger.annotations.Api;
@@ -68,7 +69,7 @@ public class MenuController extends BaseController {
     }
 
     @GetMapping("userMenu")
-    @ApiOperation("查询用户菜单树")
+    @ApiOperation("查询用户路由树")
     public R findUserMenu() {
         R r = R.success();
         // TODO 获取用户角色
@@ -85,6 +86,20 @@ public class MenuController extends BaseController {
         });
         Collections.sort(routers, Comparator.comparingInt(VueRouter::getSort));
         r.setData(TreeUtil.bulid(routers, 0L));
+        return r;
+    }
+
+    @GetMapping("tree")
+    @ApiOperation("查询菜单树")
+    public R findMenuTree() {
+        R r = R.success();
+        List<MenuDO> menus = menuService.findAll();
+        List<MenuTreeVO> menuTrees = new ArrayList<>();
+        menus.forEach(menuDO -> {
+            menuTrees.add(new MenuTreeVO(menuDO));
+        });
+        Collections.sort(menuTrees, Comparator.comparingInt(MenuTreeVO::getSequence));
+        r.setData(TreeUtil.bulid(menuTrees, 0L));
         return r;
     }
 }
