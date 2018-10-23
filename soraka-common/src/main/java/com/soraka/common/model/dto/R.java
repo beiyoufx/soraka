@@ -1,6 +1,6 @@
-package com.soraka.admin.model.dto;
+package com.soraka.common.model.dto;
 
-import com.soraka.admin.exception.BuzCode;
+import com.soraka.common.exception.BuzCode;
 import lombok.Data;
 
 import java.io.Serializable;

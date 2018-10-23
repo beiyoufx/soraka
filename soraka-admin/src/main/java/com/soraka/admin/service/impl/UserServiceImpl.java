@@ -1,9 +1,9 @@
 package com.soraka.admin.service.impl;
 
 import com.soraka.admin.dao.UserDAO;
-import com.soraka.admin.model.domain.UserDO;
-import com.soraka.admin.model.domain.UserRoleDO;
-import com.soraka.admin.model.dto.Page;
+import com.soraka.common.model.domain.UserDO;
+import com.soraka.common.model.domain.UserRoleDO;
+import com.soraka.common.model.dto.Page;
 import com.soraka.admin.model.dto.QueryParam;
 import com.soraka.admin.service.UserRoleService;
 import com.soraka.admin.service.UserService;

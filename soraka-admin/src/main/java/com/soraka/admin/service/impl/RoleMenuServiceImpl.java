@@ -1,7 +1,7 @@
 package com.soraka.admin.service.impl;
 
 import com.soraka.admin.dao.RoleMenuDAO;
-import com.soraka.admin.model.domain.RoleMenuDO;
+import com.soraka.common.model.domain.RoleMenuDO;
 import com.soraka.admin.service.RoleMenuService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

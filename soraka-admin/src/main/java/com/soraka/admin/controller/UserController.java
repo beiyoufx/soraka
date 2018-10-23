@@ -1,15 +1,14 @@
 package com.soraka.admin.controller;
 
-import com.soraka.admin.model.domain.RoleDO;
-import com.soraka.admin.model.domain.UserDO;
-import com.soraka.admin.model.dto.Page;
+import com.soraka.common.model.domain.RoleDO;
+import com.soraka.common.model.domain.UserDO;
+import com.soraka.common.model.dto.Page;
 import com.soraka.admin.model.dto.QueryParam;
-import com.soraka.admin.model.dto.R;
+import com.soraka.common.model.dto.R;
 import com.soraka.admin.model.vo.UserVO;
 import com.soraka.admin.service.RoleService;
 import com.soraka.admin.service.UserService;
 import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;

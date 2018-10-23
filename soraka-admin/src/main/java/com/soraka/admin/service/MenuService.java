@@ -1,7 +1,7 @@
 package com.soraka.admin.service;
 
-import com.soraka.admin.model.domain.MenuDO;
-import com.soraka.admin.model.dto.Page;
+import com.soraka.common.model.domain.MenuDO;
+import com.soraka.common.model.dto.Page;
 import com.soraka.admin.model.dto.QueryParam;
 import org.springframework.stereotype.Service;
 

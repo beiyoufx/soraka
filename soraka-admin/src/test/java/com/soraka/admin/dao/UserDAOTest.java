@@ -1,6 +1,6 @@
 package com.soraka.admin.dao;
 
-import com.soraka.admin.model.domain.UserDO;
+import com.soraka.common.model.domain.UserDO;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;

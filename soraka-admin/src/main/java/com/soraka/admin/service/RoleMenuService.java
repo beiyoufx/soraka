@@ -1,6 +1,6 @@
 package com.soraka.admin.service;
 
-import com.soraka.admin.model.domain.RoleMenuDO;
+import com.soraka.common.model.domain.RoleMenuDO;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

@@ -1,10 +1,10 @@
 package com.soraka.admin.controller;
 
-import com.soraka.admin.constants.Constants;
-import com.soraka.admin.exception.BuzCode;
-import com.soraka.admin.model.domain.UserDO;
+import com.soraka.common.constant.Constants;
+import com.soraka.common.exception.BuzCode;
+import com.soraka.common.model.domain.UserDO;
 import com.soraka.admin.model.dto.LoginDTO;
-import com.soraka.admin.model.dto.R;
+import com.soraka.common.model.dto.R;
 import com.soraka.admin.model.dto.UserInfo;
 import com.soraka.admin.service.MenuService;
 import com.soraka.admin.service.UserService;

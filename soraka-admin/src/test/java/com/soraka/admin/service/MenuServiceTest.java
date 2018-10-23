@@ -1,7 +1,7 @@
 package com.soraka.admin.service;
 
-import com.soraka.admin.constants.Constants;
-import com.soraka.admin.model.domain.MenuDO;
+import com.soraka.common.constant.Constants;
+import com.soraka.common.model.domain.MenuDO;
 import com.soraka.admin.model.dto.VueRouter;
 import com.soraka.admin.util.TreeUtil;
 import org.junit.Assert;

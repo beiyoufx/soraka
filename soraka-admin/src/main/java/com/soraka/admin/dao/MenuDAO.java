@@ -1,6 +1,6 @@
 package com.soraka.admin.dao;
 
-import com.soraka.admin.model.domain.MenuDO;
+import com.soraka.common.model.domain.MenuDO;
 import com.soraka.admin.model.dto.QueryParam;
 import org.apache.ibatis.annotations.Param;
 

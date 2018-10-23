@@ -1,4 +1,4 @@
-package com.soraka.admin.model.domain;
+package com.soraka.common.model.domain;
 
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -11,7 +11,7 @@ import java.util.Date;
  *
  * @author yongjie.teng
  * @date 2018/8/16
- * @package com.soraka.admin.model.domain
+ * @package com.soraka.common.model.domain
  */
 @Data
 public abstract class BaseDO implements Serializable {

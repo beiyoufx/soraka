@@ -1,9 +1,9 @@
 package com.soraka.admin.controller;
 
-import com.soraka.admin.model.domain.DeptDO;
-import com.soraka.admin.model.dto.Page;
+import com.soraka.common.model.domain.DeptDO;
+import com.soraka.common.model.dto.Page;
 import com.soraka.admin.model.dto.QueryParam;
-import com.soraka.admin.model.dto.R;
+import com.soraka.common.model.dto.R;
 import com.soraka.admin.model.vo.DeptTreeVO;
 import com.soraka.admin.service.DeptService;
 import com.soraka.admin.util.TreeUtil;

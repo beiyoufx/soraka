@@ -1,10 +1,10 @@
 package com.soraka.admin.controller;
 
-import com.soraka.admin.constants.Constants;
-import com.soraka.admin.model.domain.MenuDO;
-import com.soraka.admin.model.dto.Page;
+import com.soraka.common.constant.Constants;
+import com.soraka.common.model.domain.MenuDO;
+import com.soraka.common.model.dto.Page;
 import com.soraka.admin.model.dto.QueryParam;
-import com.soraka.admin.model.dto.R;
+import com.soraka.common.model.dto.R;
 import com.soraka.admin.model.dto.VueRouter;
 import com.soraka.admin.model.vo.MenuTreeVO;
 import com.soraka.admin.service.MenuService;

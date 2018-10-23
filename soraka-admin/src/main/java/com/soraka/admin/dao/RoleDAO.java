@@ -1,6 +1,6 @@
 package com.soraka.admin.dao;
 
-import com.soraka.admin.model.domain.RoleDO;
+import com.soraka.common.model.domain.RoleDO;
 import com.soraka.admin.model.dto.QueryParam;
 
 import java.util.List;

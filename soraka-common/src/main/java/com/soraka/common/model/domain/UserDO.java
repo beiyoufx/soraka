@@ -1,4 +1,4 @@
-package com.soraka.admin.model.domain;
+package com.soraka.common.model.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
@@ -11,7 +11,7 @@ import java.util.List;
  *
  * @author yongjie.teng
  * @date 2018/8/15
- * @package com.soraka.admin.model.domain
+ * @package com.soraka.common.model.domain
  */
 @Data
 public class UserDO extends BaseDO {

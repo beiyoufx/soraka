@@ -1,4 +1,4 @@
-package com.soraka.admin.model.dto;
+package com.soraka.common.model.dto;
 
 import lombok.Data;
 

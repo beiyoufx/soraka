@@ -1,4 +1,4 @@
-package com.soraka.admin.model.domain;
+package com.soraka.common.model.domain;
 
 import lombok.Data;
 
@@ -9,7 +9,7 @@ import java.util.List;
  *
  * @author yongjie.teng
  * @date 2018/8/16
- * @package com.soraka.admin.model.domain
+ * @package com.soraka.common.model.domain
  */
 @Data
 public class RoleDO extends BaseDO {

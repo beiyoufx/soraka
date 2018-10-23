@@ -1,4 +1,4 @@
-package com.soraka.admin.model.domain;
+package com.soraka.common.model.domain;
 
 import lombok.Data;
 
@@ -9,7 +9,7 @@ import java.io.Serializable;
  *
  * @author yongjie.teng
  * @date 2018/8/30
- * @package com.soraka.admin.model.domain
+ * @package com.soraka.common.model.domain
  */
 @Data
 public class UserRoleDO implements Serializable {

@@ -1,4 +1,4 @@
-package com.soraka.admin.constants;
+package com.soraka.common.constant;
 
 /**
  * @author yongjie.teng
@@ -22,4 +22,12 @@ public class Constants {
      */
     public static final int MENU = 1;
     public static final int BUTTON = 2;
+    /**
+     * 基本角色
+     */
+    public static final String BASE_ROLE = "ROLE_USER";
+    /**
+     * 安全相关
+     */
+    public static final String SORAKA_LICENSE = "Made By SORAKA";
 }

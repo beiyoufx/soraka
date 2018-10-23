@@ -1,9 +1,9 @@
 package com.soraka.admin.controller;
 
-import com.soraka.admin.model.domain.RoleDO;
-import com.soraka.admin.model.dto.Page;
+import com.soraka.common.model.domain.RoleDO;
+import com.soraka.common.model.dto.Page;
 import com.soraka.admin.model.dto.QueryParam;
-import com.soraka.admin.model.dto.R;
+import com.soraka.common.model.dto.R;
 import com.soraka.admin.service.RoleService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;

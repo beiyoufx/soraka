@@ -1,4 +1,4 @@
-package com.soraka.admin.exception;
+package com.soraka.common.exception;
 
 /**
  * 业务异常编码
