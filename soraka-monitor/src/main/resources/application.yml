@@ -1,0 +1,28 @@
+spring:
+    application:
+        name: soraka-monitor
+
+server:
+    port: 8005
+
+eureka:
+    instance:
+        hostname: localhost
+        prefer-ip-address: true
+    client:
+        register-with-eureka: true
+        fetch-registry: true
+        service-url:
+            defaultZone: http://localhost:8001/eureka/
+endpoints:
+    health:
+        sensitive: false
+management:
+    security:
+        enabled: false
+security:
+    user:
+        name: admin
+        password: admin
+    basic:
+        enabled: false

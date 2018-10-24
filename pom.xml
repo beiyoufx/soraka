@@ -19,6 +19,7 @@
         <module>soraka-gateway</module>
         <module>soraka-admin</module>
         <module>soraka-weixin</module>
+        <module>soraka-monitor</module>
     </modules>
 
     <developers>
@@ -43,6 +44,7 @@
         <mybatis.starter.version>1.3.2</mybatis.starter.version>
         <lombok.version>1.16.20</lombok.version>
         <swagger.version>2.7.0</swagger.version>
+        <spring-boot-admin.version>1.5.7</spring-boot-admin.version>
     </properties>
 
     <!--依赖-->
@@ -82,7 +84,36 @@
                 <artifactId>springfox-swagger-ui</artifactId>
                 <version>${swagger.version}</version>
             </dependency>
+            <!-- spring boot admin-->
+            <!--spring-boot-admin-server-->
+            <dependency>
+                <groupId>de.codecentric</groupId>
+                <artifactId>spring-boot-admin-server</artifactId>
+                <version>${spring-boot-admin.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-actuator</artifactId>
+                <version>${spring-boot-admin.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>de.codecentric</groupId>
+                <artifactId>spring-boot-admin-server-ui</artifactId>
+                <version>${spring-boot-admin.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>de.codecentric</groupId>
+                <artifactId>spring-boot-admin-server-ui-hystrix</artifactId>
+                <version>${spring-boot-admin.version}</version>
+            </dependency>
+            <!--spring-boot-admin-client-->
+            <dependency>
+                <groupId>de.codecentric</groupId>
+                <artifactId>spring-boot-admin-starter-client</artifactId>
+                <version>${spring-boot-admin.version}</version>
+            </dependency>
         </dependencies>
+
     </dependencyManagement>
 
     <!--仓库-->
