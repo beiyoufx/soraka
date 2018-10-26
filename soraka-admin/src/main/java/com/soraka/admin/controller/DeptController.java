@@ -76,7 +76,7 @@ public class DeptController extends BaseController {
             deptTrees.add(new DeptTreeVO(deptDO));
         });
         Collections.sort(deptTrees, Comparator.comparingInt(DeptTreeVO::getSequence));
-        r.setData(TreeUtil.bulid(deptTrees, 0L));
+        r.setData(TreeUtil.build(deptTrees, 0L));
         return r;
     }
 }

@@ -49,7 +49,7 @@ public class MenuServiceTest {
             }
         });
         Collections.sort(routers, Comparator.comparingInt(VueRouter::getSort));
-        List<VueRouter> tree = TreeUtil.bulid(routers, 0L);
+        List<VueRouter> tree = TreeUtil.build(routers, 0L);
         System.out.println(tree);
         Assert.assertNotEquals(0, menus.size());
     }

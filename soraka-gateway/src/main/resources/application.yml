@@ -17,8 +17,15 @@ zuul:
   routes:
     soraka-weixin: 'mp/**'
     soraka-admin: 'admin/**'
-management:
-  security:
-    enabled: false
+    soraka-auth: 'auth/**'
+  sensitiveHeaders: Cookie,Set-Cookie
 ribbon:
   ReadTimeout: 3000
+#认证服务器地址
+security:
+  auth:
+    server: http://localhost:8005
+logging:
+  level:
+    com.soraka.auth: DEBUG
+    org.springframework.security: DEBUG

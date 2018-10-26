@@ -16,15 +16,14 @@ public class TreeUtil {
     /**
      * 两层循环实现
      *
-     * @param treeNodes 传入的树节点列表
+     * @param treeNodes 节点列表
+     * @param root 根节点ID
      * @return
      */
-    public static <T extends TreeNode> List<T> bulid(List<T> treeNodes, Object root) {
-
+    public static <T extends TreeNode> List<T> build(List<T> treeNodes, Object root) {
         List<T> trees = new ArrayList<>();
 
         for (T treeNode : treeNodes) {
-
             if (root.equals(treeNode.getParentId())) {
                 trees.add(treeNode);
             }

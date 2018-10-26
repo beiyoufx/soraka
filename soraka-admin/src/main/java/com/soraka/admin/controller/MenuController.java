@@ -85,7 +85,7 @@ public class MenuController extends BaseController {
             }
         });
         Collections.sort(routers, Comparator.comparingInt(VueRouter::getSort));
-        r.setData(TreeUtil.bulid(routers, 0L));
+        r.setData(TreeUtil.build(routers, 0L));
         return r;
     }
 
@@ -99,7 +99,7 @@ public class MenuController extends BaseController {
             menuTrees.add(new MenuTreeVO(menuDO));
         });
         Collections.sort(menuTrees, Comparator.comparingInt(MenuTreeVO::getSequence));
-        r.setData(TreeUtil.bulid(menuTrees, 0L));
+        r.setData(TreeUtil.build(menuTrees, 0L));
         return r;
     }
 }
