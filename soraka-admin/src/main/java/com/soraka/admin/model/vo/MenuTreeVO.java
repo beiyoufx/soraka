@@ -35,9 +35,19 @@ public class MenuTreeVO extends TreeNode {
     private Integer type;
 
     /**
+     * 前端路径
+     */
+    private String path;
+
+    /**
      * 资源地址
      */
     private String url;
+
+    /**
+     * Http 方法
+     */
+    private String method;
 
     /**
      * 权限字符串
@@ -64,7 +74,9 @@ public class MenuTreeVO extends TreeNode {
         setParentId(menuDO.getParentId());
         this.name = menuDO.getName();
         this.component = menuDO.getComponent();
+        this.path = menuDO.getPath();
         this.url = menuDO.getUrl();
+        this.method = menuDO.getMethod();
         this.redirect = menuDO.getRedirect();
         this.sequence = menuDO.getSequence();
         this.ico = menuDO.getIco();

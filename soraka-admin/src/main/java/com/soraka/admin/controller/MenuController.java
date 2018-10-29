@@ -11,14 +11,12 @@ import com.soraka.admin.service.MenuService;
 import com.soraka.admin.util.TreeUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 
 /**
  * @author yongjie.teng
@@ -66,6 +64,13 @@ public class MenuController extends BaseController {
     @ApiOperation(value = "删除菜单", notes = "根据菜单ID删除")
     public R delete(@PathVariable("id") Long id) {
         return R.operate(menuService.delete(id));
+    }
+
+    @GetMapping("roleMenu")
+    @ApiOperation("查询角色菜单")
+    public List<MenuDO> findRoleMenu(@NotBlank @RequestParam String[] roleKeys) {
+        List<String> keys = Arrays.asList(roleKeys);
+        return menuService.getRoleMenu(keys);
     }
 
     @GetMapping("userMenu")

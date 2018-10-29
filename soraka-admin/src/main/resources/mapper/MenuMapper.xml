@@ -9,7 +9,9 @@
         sys_menu.component,
         sys_menu.redirect,
         sys_menu.type,
+        sys_menu.path,
         sys_menu.url,
+        sys_menu.method,
         sys_menu.permission,
         sys_menu.ico,
         sys_menu.parent_id,
@@ -71,7 +73,9 @@
         INSERT INTO sys_menu (
             name,
             type,
+            path,
             url,
+            method,
             permission,
             ico,
             parent_id,
@@ -81,7 +85,9 @@
         (
             #{name},
             #{type},
+            #{path},
             #{url},
+            #{method},
             #{permission},
             #{ico},
             #{parentId},
@@ -93,7 +99,9 @@
         <set>
             <if test="name != null">name = #{name}, </if>
             <if test="type != null">type = #{type}, </if>
+            <if test="path != null">path = #{path}, </if>
             <if test="url != null">url = #{url}, </if>
+            <if test="method != null">method = #{method}, </if>
             <if test="permission != null">permission = #{permission}, </if>
             <if test="ico != null">ico = #{ico}, </if>
             <if test="parentId != null">parent_id = #{parentId}, </if>

@@ -38,9 +38,19 @@ public class MenuDO extends BaseDO {
     private Integer type;
 
     /**
+     * 前端路径
+     */
+    private String path;
+
+    /**
      * 资源地址
      */
     private String url;
+
+    /**
+     * Http 方法
+     */
+    private String method;
 
     /**
      * 权限字符串

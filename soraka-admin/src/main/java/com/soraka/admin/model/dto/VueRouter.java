@@ -51,7 +51,7 @@ public class VueRouter extends TreeNode {
         setParentId(menuDO.getParentId());
         this.name = menuDO.getName();
         this.component = menuDO.getComponent();
-        this.path = menuDO.getUrl();
+        this.path = menuDO.getPath();
         this.redirect = menuDO.getRedirect();
         this.sort = menuDO.getSequence();
 
