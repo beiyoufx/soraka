@@ -33,7 +33,7 @@ public class SorakaResourceConfigurerAdapter extends ResourceServerConfigurerAda
         http.headers().frameOptions().disable();
         http
             .authorizeRequests()
-            .antMatchers("/auth/oauth/token/**").permitAll()
+            .antMatchers("/auth/**").permitAll()
             .anyRequest()
             .access("@permissionService.hasPermission(request, authentication)");
     }
@@ -56,17 +56,5 @@ public class SorakaResourceConfigurerAdapter extends ResourceServerConfigurerAda
         OAuth2WebSecurityExpressionHandler expressionHandler = new OAuth2WebSecurityExpressionHandler();
         expressionHandler.setApplicationContext(applicationContext);
         return expressionHandler;
-    }
-
-    @Bean
-    public TokenStore jwtTokenStore() {
-        return new JwtTokenStore(jwtAccessTokenConverter());
-    }
-
-    @Bean
-    public JwtAccessTokenConverter jwtAccessTokenConverter() {
-        JwtAccessTokenConverter jwtAccessTokenConverter = new JwtAccessTokenConverter();
-        jwtAccessTokenConverter.setSigningKey(Constants.JWT_SIGN_KEY);
-        return jwtAccessTokenConverter;
     }
 }

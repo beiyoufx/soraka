@@ -3,6 +3,7 @@ spring:
     name: soraka-gateway
 server:
   port: 8002
+#注册中心
 eureka:
   instance:
     hostname: localhost
@@ -12,6 +13,7 @@ eureka:
     fetch-registry: true
     service-url:
       defaultZone: http://localhost:8001/eureka/
+#路由
 zuul:
   ignored-services: '**'
   routes:
@@ -19,12 +21,26 @@ zuul:
     soraka-admin: 'admin/**'
     soraka-auth: 'auth/**'
   sensitiveHeaders: Cookie,Set-Cookie
+#负载均衡
 ribbon:
   ReadTimeout: 3000
+##熔断
+feign:
+  hystrix:
+      enabled: true
 #认证服务器地址
 security:
   auth:
     server: http://localhost:8005
+  sessions: stateless
+  oauth2:
+    client:
+      client-id: soraka
+      client-secret: soraka
+    resource:
+      jwt:
+        key-uri: ${security.auth.server}/oauth/token_key #解析jwt令牌所需要密钥的地址
+#日志
 logging:
   level:
     com.soraka.auth: DEBUG
