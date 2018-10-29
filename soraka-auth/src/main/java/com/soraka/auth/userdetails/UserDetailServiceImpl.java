@@ -1,6 +1,6 @@
 package com.soraka.auth.userdetails;
 
-import com.soraka.auth.service.UserService;
+import com.soraka.auth.service.feign.UserService;
 import com.soraka.common.model.domain.RoleDO;
 import com.soraka.common.model.domain.UserDO;
 import org.springframework.beans.factory.annotation.Autowired;

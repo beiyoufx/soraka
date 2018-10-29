@@ -7,9 +7,9 @@ import com.soraka.common.model.dto.Page;
 import com.soraka.admin.model.dto.QueryParam;
 import com.soraka.admin.service.UserRoleService;
 import com.soraka.admin.service.UserService;
-import org.apache.commons.codec.digest.DigestUtils;
-import org.apache.commons.lang.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -25,6 +25,7 @@ import java.util.List;
 @Transactional(rollbackFor = {RuntimeException.class})
 @Service
 public class UserServiceImpl implements UserService {
+    private PasswordEncoder encoder = new BCryptPasswordEncoder();
     @Autowired
     private UserDAO userDAO;
     @Autowired
@@ -117,26 +118,14 @@ public class UserServiceImpl implements UserService {
     }
 
     /**
-     * 生成随机盐值
-     *
-     * @return 盐值
-     */
-    @Override
-    public String randomSalt() {
-        return RandomStringUtils.randomAlphanumeric(8);
-    }
-
-    /**
      * 生成用户密码加密串
      *
-     * @param username 用户名
      * @param password 密码
-     * @param salt 盐值
      * @return 加密密码串
      */
     @Override
-    public String encryptPassword(String username, String password, String salt) {
-        return DigestUtils.md5Hex(username + password + salt);
+    public String encryptPassword(String password) {
+        return encoder.encode(password);
     }
 
     /**

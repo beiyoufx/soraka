@@ -42,11 +42,8 @@ public class UserController extends BaseController {
 
     @GetMapping("{id}/role")
     @ApiOperation("获取用户角色详情")
-    public R getUserRole(@PathVariable("id") Long id) {
-        List<RoleDO> roles = roleService.findByUserId(id);
-        R r = R.success();
-        r.setData(roles);
-        return r;
+    public List<RoleDO> getUserRole(@PathVariable("id") Long id) {
+        return roleService.findByUserId(id);
     }
 
     @GetMapping
@@ -61,8 +58,7 @@ public class UserController extends BaseController {
     @PostMapping
     @ApiOperation("添加用户")
     public R save(@Valid @RequestBody UserVO userVO) {
-        userVO.setSalt(userService.randomSalt());
-        userVO.setPassword(userService.encryptPassword(userVO.getUsername(), userVO.getNewPassword(), userVO.getSalt()));
+        userVO.setPassword(userService.encryptPassword(userVO.getNewPassword()));
         return R.operate(userService.save(userVO));
     }
 
@@ -70,8 +66,7 @@ public class UserController extends BaseController {
     @ApiOperation("更新用户信息")
     public R update(@RequestBody UserVO userVO) {
         if (StringUtils.isNotBlank(userVO.getNewPassword())) {
-            userVO.setSalt(userService.randomSalt());
-            userVO.setPassword(userService.encryptPassword(userVO.getUsername(), userVO.getNewPassword(), userVO.getSalt()));
+            userVO.setPassword(userService.encryptPassword(userVO.getNewPassword()));
         }
         return R.operate(userService.update(userVO));
     }
@@ -80,5 +75,11 @@ public class UserController extends BaseController {
     @ApiOperation(value = "删除用户", notes = "根据用户ID删除")
     public R delete(@PathVariable("id") Long id) {
         return R.operate(userService.delete(id));
+    }
+
+    @GetMapping("username/{username}")
+    @ApiOperation(value = "获取用户详情", notes = "根据用户名获取用户详情")
+    public UserDO getByUsername(@PathVariable("username") String username) {
+        return userService.getByUsername(username);
     }
 }

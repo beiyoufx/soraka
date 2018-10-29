@@ -9,6 +9,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * 菜单服务熔断回调
+ *
  * @author yongjie.teng
  * @date 2018/10/29
  * @package com.soraka.gateway.service.feign.fallback

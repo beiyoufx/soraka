@@ -95,6 +95,6 @@ public class LoginController extends BaseController {
      * @return
      */
     private boolean isMatched(UserDO user, String password) {
-        return user.getPassword().equals(userService.encryptPassword(user.getUsername(), password, user.getSalt()));
+        return user.getPassword().equals(userService.encryptPassword(password));
     }
 }

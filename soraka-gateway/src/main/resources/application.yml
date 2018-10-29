@@ -24,7 +24,7 @@ zuul:
 #负载均衡
 ribbon:
   ReadTimeout: 3000
-##熔断
+#熔断
 feign:
   hystrix:
       enabled: true
