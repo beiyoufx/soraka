@@ -1,8 +1,8 @@
 package com.soraka.admin.service.impl;
 
 import com.soraka.admin.dao.DeptDAO;
-import com.soraka.admin.model.domain.DeptDO;
-import com.soraka.admin.model.dto.Page;
+import com.soraka.common.model.domain.DeptDO;
+import com.soraka.common.model.dto.Page;
 import com.soraka.admin.model.dto.QueryParam;
 import com.soraka.admin.service.DeptService;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50716
 File Encoding         : 65001
 
-Date: 2018-10-16 18:39:08
+Date: 2018-10-29 21:32:27
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -57,7 +57,9 @@ CREATE TABLE `sys_menu` (
   `component` varchar(100) DEFAULT NULL COMMENT '组件',
   `redirect` varchar(255) DEFAULT NULL COMMENT '重定向地址,noredirect的时候该路由在面包屑导航中不可被点击',
   `type` int(10) NOT NULL COMMENT '类型：1菜单2按钮',
+  `path` varchar(255) DEFAULT NULL COMMENT '前端路径',
   `url` varchar(255) DEFAULT NULL COMMENT '资源地址',
+  `method` varchar(10) DEFAULT NULL COMMENT '方法GET/PUT/POST/DELETE等',
   `permission` varchar(255) DEFAULT NULL COMMENT '权限字符串',
   `ico` varchar(50) DEFAULT NULL COMMENT '菜单图标',
   `parent_id` bigint(20) NOT NULL COMMENT '父节点ID',
@@ -71,16 +73,16 @@ CREATE TABLE `sys_menu` (
 -- ----------------------------
 -- Records of sys_menu
 -- ----------------------------
-INSERT INTO `sys_menu` VALUES ('1', '系统管理', 'Layout', 'noredirect', '1', '/sys', '', 'system', '0', '1', '1', '2018-08-16 16:53:22', '2018-08-16 16:53:22');
-INSERT INTO `sys_menu` VALUES ('2', '用户管理', 'views/sys/user/list', '/sys/user', '1', 'user', '测试权限', 'peoples', '1', '0', '1', '2018-08-29 13:27:19', '2018-08-29 13:27:19');
-INSERT INTO `sys_menu` VALUES ('3', '角色管理', 'views/sys/role/list', '/sys/role', '1', '/sys/role', null, 'role', '1', '2', '1', '2018-08-29 13:27:59', '2018-08-29 13:27:59');
-INSERT INTO `sys_menu` VALUES ('4', '菜单管理', 'views/sys/menu/list', '/sys/menu', '1', '/sys/menu', null, 'system', '1', '3', '1', '2018-08-29 13:28:23', '2018-08-29 13:28:23');
-INSERT INTO `sys_menu` VALUES ('5', '部门管理', 'views/sys/dept/list', '/sys/dept', '1', '/sys/dept', null, 'dept', '1', '4', '1', '2018-08-29 13:30:47', '2018-08-29 13:30:47');
-INSERT INTO `sys_menu` VALUES ('6', '内容管理', 'Layout', 'noredirect', '1', '/sys', null, 'system', '0', '5', '1', '2018-08-29 13:34:33', '2018-08-29 13:34:33');
-INSERT INTO `sys_menu` VALUES ('7', '系统监控', 'Layout', 'noredirect', '1', '/monitor', null, 'system', '0', '6', '1', '2018-08-30 16:11:02', '2018-08-30 16:12:05');
-INSERT INTO `sys_menu` VALUES ('8', '用户用户', 'Layout', null, '1', '/monitor', null, 'peoples', '2', '1', '1', '2018-10-15 16:07:30', '2018-10-16 10:40:50');
-INSERT INTO `sys_menu` VALUES ('11', '系统设置', 'Layout', null, '1', '/monitor', null, 'system', '0', '4', '1', '2018-10-16 11:13:30', '2018-10-16 11:46:02');
-INSERT INTO `sys_menu` VALUES ('12', '删除按钮', null, null, '2', null, null, null, '2', '2', '1', '2018-10-16 11:49:06', '2018-10-16 11:49:06');
+INSERT INTO `sys_menu` VALUES ('1', '系统管理', 'Layout', 'noredirect', '1', '/sys', '', null, '', 'system', '0', '1', '1', '2018-08-16 16:53:22', '2018-08-16 16:53:22');
+INSERT INTO `sys_menu` VALUES ('2', '用户管理', 'views/sys/user/list', '/sys/user', '1', 'user', '/admin/user/**', null, '测试权限', 'peoples', '1', '0', '1', '2018-08-29 13:27:19', '2018-08-29 13:27:19');
+INSERT INTO `sys_menu` VALUES ('3', '角色管理', 'views/sys/role/list', '/sys/role', '1', '/sys/role', '/admin/role/**', null, null, 'role', '1', '2', '1', '2018-08-29 13:27:59', '2018-08-29 13:27:59');
+INSERT INTO `sys_menu` VALUES ('4', '菜单管理', 'views/sys/menu/list', '/sys/menu', '1', '/sys/menu', '/admin/menu/**', null, null, 'system', '1', '3', '1', '2018-08-29 13:28:23', '2018-08-29 13:28:23');
+INSERT INTO `sys_menu` VALUES ('5', '部门管理', 'views/sys/dept/list', '/sys/dept', '1', '/sys/dept', '/admin/dept/**', null, null, 'dept', '1', '4', '1', '2018-08-29 13:30:47', '2018-08-29 13:30:47');
+INSERT INTO `sys_menu` VALUES ('6', '内容管理', 'Layout', 'noredirect', '1', '/sys', '', null, null, 'system', '0', '5', '1', '2018-08-29 13:34:33', '2018-08-29 13:34:33');
+INSERT INTO `sys_menu` VALUES ('7', '系统监控', 'Layout', 'noredirect', '1', '/monitor', '', null, null, 'system', '0', '6', '1', '2018-08-30 16:11:02', '2018-08-30 16:12:05');
+INSERT INTO `sys_menu` VALUES ('8', '用户用户', 'Layout', null, '1', '/monitor', '/admin/user/**', null, null, 'peoples', '2', '1', '1', '2018-10-15 16:07:30', '2018-10-16 10:40:50');
+INSERT INTO `sys_menu` VALUES ('11', '系统设置', 'Layout', null, '1', '/monitor', '', null, null, 'system', '0', '4', '1', '2018-10-16 11:13:30', '2018-10-16 11:46:02');
+INSERT INTO `sys_menu` VALUES ('12', '用户删除', null, null, '2', null, '/admin/user/**', 'DELETE', 'sys_user_delete', null, '2', '2', '1', '2018-10-16 11:49:06', '2018-10-16 11:49:06');
 
 -- ----------------------------
 -- Table structure for sys_role
@@ -161,8 +163,7 @@ CREATE TABLE `sys_user` (
   `name` varchar(50) NOT NULL COMMENT '姓名',
   `mobilephone` varchar(20) DEFAULT NULL COMMENT '手机号',
   `email` varchar(50) DEFAULT NULL COMMENT '邮箱',
-  `password` varchar(32) NOT NULL COMMENT '密码',
-  `salt` varchar(32) NOT NULL COMMENT '盐值',
+  `password` varchar(100) NOT NULL COMMENT '密码',
   `gender` int(10) NOT NULL DEFAULT '0' COMMENT '性别：0未知1女2男',
   `dept_id` bigint(20) DEFAULT NULL COMMENT '部门ID',
   `status` int(10) NOT NULL DEFAULT '1' COMMENT '状态：0不可用1可用',
@@ -172,17 +173,17 @@ CREATE TABLE `sys_user` (
   `modify_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '修改时间',
   `deleted` tinyint(1) NOT NULL DEFAULT '0' COMMENT '删除标记：0未删除1已删除',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 -- Records of sys_user
 -- ----------------------------
-INSERT INTO `sys_user` VALUES ('1', 'soraka', '索拉卡', '13199998888', 'soraka@soraka.com', '108bc499f1892313a191e71f108ec8ea', 'pmoBuWgb', '1', '1', '1', '1', '1', '2018-08-15 17:58:07', '2018-09-12 11:53:03', '0');
-INSERT INTO `sys_user` VALUES ('2', 'mayun', '马云', '13177778888', 'yun.ma@soraka.com', '108bc499f1892313a191e71f108ec8ea', 'pmoBuWgb', '0', '2', '0', '1', '1', '2018-08-29 14:31:13', '2018-08-29 14:31:13', '0');
-INSERT INTO `sys_user` VALUES ('3', 'mahuateng', '马化腾', '13166668888', 'huateng.ma@soraka.com', '108bc499f1892313a191e71f108ec8ea', 'pmoBuWgb', '1', '1', '1', '1', '1', '2018-08-29 14:32:44', '2018-08-29 14:32:44', '0');
-INSERT INTO `sys_user` VALUES ('4', 'liyanhong', '李彦宏', '13155552222', 'liyanhong@baidu.com', '117619b977f8303b90d275486c055356', 'BsKLKZFZ', '1', '1', '1', null, null, '2018-09-11 18:46:28', '2018-09-11 19:26:09', '0');
-INSERT INTO `sys_user` VALUES ('5', 'liuqiangdong', '刘强东', '13111112222', 'liuqiangdong@jd.com', '8cb9709cd0f5917493349e6bbbebd5ea', 'vfF5OyFQ', '2', '2', '1', null, null, '2018-09-12 11:46:24', '2018-09-12 11:46:24', '0');
-INSERT INTO `sys_user` VALUES ('6', 'dinglei', '丁磊', '13122224444', 'dinglei@163.com', '2fe8e1ae801997d9d6656ed1e0a158cb', 'uqJjhdfz', '2', '1', '1', null, null, '2018-09-12 11:49:24', '2018-09-13 15:59:49', '0');
+INSERT INTO `sys_user` VALUES ('1', 'soraka', '索拉卡', '13199998888', 'soraka@soraka.com', '$2a$10$vEDFbWM5OzmMBQCKopTrCujtnQgq.sN1cSNLoRXjKFN5lS9C3rHbq', '1', '1', '1', '1', '1', '2018-08-15 17:58:07', '2018-09-12 11:53:03', '0');
+INSERT INTO `sys_user` VALUES ('2', 'mayun', '马云', '13177778888', 'yun.ma@soraka.com', '108bc499f1892313a191e71f108ec8ea', '0', '2', '0', '1', '1', '2018-08-29 14:31:13', '2018-08-29 14:31:13', '0');
+INSERT INTO `sys_user` VALUES ('3', 'mahuateng', '马化腾', '13166668888', 'huateng.ma@soraka.com', '108bc499f1892313a191e71f108ec8ea', '1', '1', '1', '1', '1', '2018-08-29 14:32:44', '2018-08-29 14:32:44', '0');
+INSERT INTO `sys_user` VALUES ('4', 'liyanhong', '李彦宏', '13155552222', 'liyanhong@baidu.com', '117619b977f8303b90d275486c055356', '1', '1', '1', null, null, '2018-09-11 18:46:28', '2018-09-11 19:26:09', '0');
+INSERT INTO `sys_user` VALUES ('5', 'liuqiangdong', '刘强东', '13111112222', 'liuqiangdong@jd.com', '8cb9709cd0f5917493349e6bbbebd5ea', '2', '2', '1', null, null, '2018-09-12 11:46:24', '2018-09-12 11:46:24', '0');
+INSERT INTO `sys_user` VALUES ('6', 'dinglei', '丁磊', '13122224444', 'dinglei@163.com', '2fe8e1ae801997d9d6656ed1e0a158cb', '2', '1', '1', null, null, '2018-09-12 11:49:24', '2018-09-13 15:59:49', '0');
 
 -- ----------------------------
 -- Table structure for sys_user_role
@@ -193,7 +194,7 @@ CREATE TABLE `sys_user_role` (
   `user_id` bigint(20) NOT NULL COMMENT '用户ID',
   `role_id` bigint(20) NOT NULL COMMENT '角色ID',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 -- Records of sys_user_role

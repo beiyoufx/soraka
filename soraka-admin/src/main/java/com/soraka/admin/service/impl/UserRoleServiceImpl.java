@@ -1,7 +1,7 @@
 package com.soraka.admin.service.impl;
 
 import com.soraka.admin.dao.UserRoleDAO;
-import com.soraka.admin.model.domain.UserRoleDO;
+import com.soraka.common.model.domain.UserRoleDO;
 import com.soraka.admin.service.UserRoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

@@ -10,7 +10,6 @@
         sys_user.mobilephone,
         sys_user.email,
         sys_user.password,
-        sys_user.salt,
         sys_user.gender,
         sys_user.status,
         sys_user.dept_id,
@@ -20,7 +19,7 @@
         sys_user.modify_time,
         sys_user.deleted
     </sql>
-    <select id="get" resultType="com.soraka.admin.model.domain.UserDO" parameterType="java.lang.Long">
+    <select id="get" resultType="com.soraka.common.model.domain.UserDO" parameterType="java.lang.Long">
         SELECT
             <include refid="all_fields"/>
         FROM
@@ -28,7 +27,7 @@
         WHERE
             sys_user.id = #{id}
     </select>
-    <select id="getByUsername" resultType="com.soraka.admin.model.domain.UserDO">
+    <select id="getByUsername" resultType="com.soraka.common.model.domain.UserDO">
         SELECT
             <include refid="all_fields"/>
         FROM
@@ -36,7 +35,7 @@
         WHERE
             sys_user.username = #{username}
     </select>
-    <select id="getByMobilephone" resultType="com.soraka.admin.model.domain.UserDO">
+    <select id="getByMobilephone" resultType="com.soraka.common.model.domain.UserDO">
         SELECT
             <include refid="all_fields"/>
         FROM
@@ -44,7 +43,7 @@
         WHERE
             sys_user.mobilephone = #{mobilephone}
     </select>
-    <select id="getByEmail" resultType="com.soraka.admin.model.domain.UserDO">
+    <select id="getByEmail" resultType="com.soraka.common.model.domain.UserDO">
         SELECT
             <include refid="all_fields"/>
         FROM
@@ -52,7 +51,7 @@
         WHERE
             sys_user.email = #{email}
     </select>
-    <select id="find" resultType="com.soraka.admin.model.domain.UserDO" parameterType="com.soraka.admin.model.dto.QueryParam">
+    <select id="find" resultType="com.soraka.common.model.domain.UserDO" parameterType="com.soraka.admin.model.dto.QueryParam">
         SELECT
             <include refid="all_fields"/>
         FROM
@@ -89,14 +88,13 @@
             </if>
         </where>
     </select>
-    <insert id="save" parameterType="com.soraka.admin.model.domain.UserDO" useGeneratedKeys="true" keyProperty="id">
+    <insert id="save" parameterType="com.soraka.common.model.domain.UserDO" useGeneratedKeys="true" keyProperty="id">
         INSERT INTO sys_user (
             username,
             name,
             mobilephone,
             email,
             password,
-            salt,
             gender,
             dept_id,
             create_user,
@@ -109,21 +107,19 @@
                 #{mobilephone},
                 #{email},
                 #{password},
-                #{salt},
                 #{gender},
                 #{deptId},
                 #{createUser},
                 #{modifyUser}
             )
     </insert>
-    <update id="update" parameterType="com.soraka.admin.model.domain.UserDO">
+    <update id="update" parameterType="com.soraka.common.model.domain.UserDO">
         UPDATE sys_user
         <set>
             <if test="name != null">name = #{name}, </if>
             <if test="mobilephone != null">mobilephone = #{mobilephone}, </if>
             <if test="email != null">email = #{email}, </if>
             <if test="password != null">password = #{password}, </if>
-            <if test="salt != null">salt = #{salt}, </if>
             <if test="gender != null">gender = #{gender}, </if>
             <if test="status != null">status = #{status}, </if>
             <if test="deptId != null">dept_id = #{deptId}, </if>

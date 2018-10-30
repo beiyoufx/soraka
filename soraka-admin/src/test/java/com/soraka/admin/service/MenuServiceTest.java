@@ -1,7 +1,7 @@
 package com.soraka.admin.service;
 
-import com.soraka.admin.constants.Constants;
-import com.soraka.admin.model.domain.MenuDO;
+import com.soraka.common.constant.Constants;
+import com.soraka.common.model.domain.MenuDO;
 import com.soraka.admin.model.dto.VueRouter;
 import com.soraka.admin.util.TreeUtil;
 import org.junit.Assert;
@@ -49,7 +49,7 @@ public class MenuServiceTest {
             }
         });
         Collections.sort(routers, Comparator.comparingInt(VueRouter::getSort));
-        List<VueRouter> tree = TreeUtil.bulid(routers, 0L);
+        List<VueRouter> tree = TreeUtil.build(routers, 0L);
         System.out.println(tree);
         Assert.assertNotEquals(0, menus.size());
     }

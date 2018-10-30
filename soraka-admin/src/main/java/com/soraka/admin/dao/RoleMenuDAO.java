@@ -1,6 +1,6 @@
 package com.soraka.admin.dao;
 
-import com.soraka.admin.model.domain.RoleMenuDO;
+import com.soraka.common.model.domain.RoleMenuDO;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;

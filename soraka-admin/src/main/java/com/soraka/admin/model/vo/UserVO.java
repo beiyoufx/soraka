@@ -1,6 +1,6 @@
 package com.soraka.admin.model.vo;
 
-import com.soraka.admin.model.domain.UserDO;
+import com.soraka.common.model.domain.UserDO;
 import lombok.Data;
 
 /**

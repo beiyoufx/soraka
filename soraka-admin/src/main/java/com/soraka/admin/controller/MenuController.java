@@ -1,24 +1,22 @@
 package com.soraka.admin.controller;
 
-import com.soraka.admin.constants.Constants;
-import com.soraka.admin.model.domain.MenuDO;
-import com.soraka.admin.model.dto.Page;
+import com.soraka.common.constant.Constants;
+import com.soraka.common.model.domain.MenuDO;
+import com.soraka.common.model.dto.Page;
 import com.soraka.admin.model.dto.QueryParam;
-import com.soraka.admin.model.dto.R;
+import com.soraka.common.model.dto.R;
 import com.soraka.admin.model.dto.VueRouter;
 import com.soraka.admin.model.vo.MenuTreeVO;
 import com.soraka.admin.service.MenuService;
 import com.soraka.admin.util.TreeUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 
 /**
  * @author yongjie.teng
@@ -68,6 +66,13 @@ public class MenuController extends BaseController {
         return R.operate(menuService.delete(id));
     }
 
+    @GetMapping("roleMenu")
+    @ApiOperation("查询角色菜单")
+    public List<MenuDO> findRoleMenu(@NotBlank @RequestParam String[] roleKeys) {
+        List<String> keys = Arrays.asList(roleKeys);
+        return menuService.getRoleMenu(keys);
+    }
+
     @GetMapping("userMenu")
     @ApiOperation("查询用户路由树")
     public R findUserMenu() {
@@ -85,7 +90,7 @@ public class MenuController extends BaseController {
             }
         });
         Collections.sort(routers, Comparator.comparingInt(VueRouter::getSort));
-        r.setData(TreeUtil.bulid(routers, 0L));
+        r.setData(TreeUtil.build(routers, 0L));
         return r;
     }
 
@@ -99,7 +104,7 @@ public class MenuController extends BaseController {
             menuTrees.add(new MenuTreeVO(menuDO));
         });
         Collections.sort(menuTrees, Comparator.comparingInt(MenuTreeVO::getSequence));
-        r.setData(TreeUtil.bulid(menuTrees, 0L));
+        r.setData(TreeUtil.build(menuTrees, 0L));
         return r;
     }
 }

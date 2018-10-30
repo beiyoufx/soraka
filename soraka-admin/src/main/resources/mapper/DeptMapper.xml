@@ -16,7 +16,7 @@
         create_time,
         modify_time
     </sql>
-    <select id="get" resultType="com.soraka.admin.model.domain.DeptDO" parameterType="java.lang.Long">
+    <select id="get" resultType="com.soraka.common.model.domain.DeptDO" parameterType="java.lang.Long">
         SELECT
             <include refid="all_fields"/>
         FROM
@@ -24,7 +24,7 @@
         WHERE
             id = #{id}
     </select>
-    <select id="find" resultType="com.soraka.admin.model.domain.DeptDO" parameterType="com.soraka.admin.model.dto.QueryParam">
+    <select id="find" resultType="com.soraka.common.model.domain.DeptDO" parameterType="com.soraka.admin.model.dto.QueryParam">
         SELECT
         <include refid="all_fields"/>
         FROM
@@ -55,7 +55,7 @@
             </if>
         </where>
     </select>
-    <insert id="save" parameterType="com.soraka.admin.model.domain.DeptDO" useGeneratedKeys="true" keyProperty="id">
+    <insert id="save" parameterType="com.soraka.common.model.domain.DeptDO" useGeneratedKeys="true" keyProperty="id">
         INSERT INTO sys_dept (
             name,
             code,
@@ -74,7 +74,7 @@
                 #{modifyUser}
             )
     </insert>
-    <update id="update" parameterType="com.soraka.admin.model.domain.DeptDO">
+    <update id="update" parameterType="com.soraka.common.model.domain.DeptDO">
         UPDATE sys_dept
         <set>
             <if test="name != null">name = #{name}, </if>

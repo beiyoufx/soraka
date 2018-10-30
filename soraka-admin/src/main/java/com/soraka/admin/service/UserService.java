@@ -1,9 +1,8 @@
 package com.soraka.admin.service;
 
-import com.soraka.admin.model.domain.UserDO;
-import com.soraka.admin.model.dto.Page;
+import com.soraka.common.model.domain.UserDO;
+import com.soraka.common.model.dto.Page;
 import com.soraka.admin.model.dto.QueryParam;
-import com.soraka.admin.model.dto.R;
 import org.springframework.stereotype.Service;
 
 /**
@@ -56,21 +55,12 @@ public interface UserService {
     Page findPage(QueryParam queryParam);
 
     /**
-     * 生成随机盐值
-     *
-     * @return 盐值
-     */
-    String randomSalt();
-
-    /**
      * 生成用户密码加密串
      *
-     * @param username 用户名
      * @param password 密码
-     * @param salt 盐值
      * @return 加密密码串
      */
-    String encryptPassword(String username, String password, String salt);
+    String encryptPassword(String password);
 
     /**
      * 新增用户

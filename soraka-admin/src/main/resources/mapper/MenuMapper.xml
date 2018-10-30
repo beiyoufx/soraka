@@ -9,7 +9,9 @@
         sys_menu.component,
         sys_menu.redirect,
         sys_menu.type,
+        sys_menu.path,
         sys_menu.url,
+        sys_menu.method,
         sys_menu.permission,
         sys_menu.ico,
         sys_menu.parent_id,
@@ -18,7 +20,7 @@
         sys_menu.create_time,
         sys_menu.modify_time
     </sql>
-    <select id="get" resultType="com.soraka.admin.model.domain.MenuDO" parameterType="java.lang.Long">
+    <select id="get" resultType="com.soraka.common.model.domain.MenuDO" parameterType="java.lang.Long">
         SELECT
             <include refid="all_fields"/>
         FROM
@@ -26,7 +28,7 @@
         WHERE
             id = #{id}
     </select>
-    <select id="findByUserId" resultType="com.soraka.admin.model.domain.MenuDO" parameterType="java.lang.Long">
+    <select id="findByUserId" resultType="com.soraka.common.model.domain.MenuDO" parameterType="java.lang.Long">
         SELECT
         <include refid="all_fields"/>
         FROM
@@ -36,7 +38,7 @@
         WHERE
         ur.user_id = #{userId}
     </select>
-    <select id="find" resultType="com.soraka.admin.model.domain.MenuDO" parameterType="com.soraka.admin.model.dto.QueryParam">
+    <select id="find" resultType="com.soraka.common.model.domain.MenuDO" parameterType="com.soraka.admin.model.dto.QueryParam">
         SELECT
         <include refid="all_fields"/>
         FROM
@@ -67,11 +69,13 @@
             </if>
         </where>
     </select>
-    <insert id="save" parameterType="com.soraka.admin.model.domain.MenuDO" useGeneratedKeys="true" keyProperty="id">
+    <insert id="save" parameterType="com.soraka.common.model.domain.MenuDO" useGeneratedKeys="true" keyProperty="id">
         INSERT INTO sys_menu (
             name,
             type,
+            path,
             url,
+            method,
             permission,
             ico,
             parent_id,
@@ -81,19 +85,23 @@
         (
             #{name},
             #{type},
+            #{path},
             #{url},
+            #{method},
             #{permission},
             #{ico},
             #{parentId},
             #{sequence}
         )
     </insert>
-    <update id="update" parameterType="com.soraka.admin.model.domain.MenuDO">
+    <update id="update" parameterType="com.soraka.common.model.domain.MenuDO">
         UPDATE sys_menu
         <set>
             <if test="name != null">name = #{name}, </if>
             <if test="type != null">type = #{type}, </if>
+            <if test="path != null">path = #{path}, </if>
             <if test="url != null">url = #{url}, </if>
+            <if test="method != null">method = #{method}, </if>
             <if test="permission != null">permission = #{permission}, </if>
             <if test="ico != null">ico = #{ico}, </if>
             <if test="parentId != null">parent_id = #{parentId}, </if>
@@ -107,7 +115,7 @@
         DELETE FROM sys_menu WHERE id = #{id}
     </delete>
 
-    <select id="getRoleMenu" resultType="com.soraka.admin.model.domain.MenuDO" parameterType="java.lang.String">
+    <select id="getRoleMenu" resultType="com.soraka.common.model.domain.MenuDO" parameterType="java.lang.String">
         SELECT
             DISTINCT
             <include refid="all_fields"/>

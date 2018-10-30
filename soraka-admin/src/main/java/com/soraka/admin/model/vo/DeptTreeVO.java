@@ -1,6 +1,6 @@
 package com.soraka.admin.model.vo;
 
-import com.soraka.admin.model.domain.DeptDO;
+import com.soraka.common.model.domain.DeptDO;
 import com.soraka.admin.model.dto.TreeNode;
 import lombok.Data;
 
