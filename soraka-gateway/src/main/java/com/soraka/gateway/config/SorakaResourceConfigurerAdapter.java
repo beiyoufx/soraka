@@ -33,7 +33,13 @@ public class SorakaResourceConfigurerAdapter extends ResourceServerConfigurerAda
         http.headers().frameOptions().disable();
         http
             .authorizeRequests()
-            .antMatchers("/auth/**").permitAll()
+            .antMatchers(
+                "/auth/**",
+                "/*/swagger-ui.html",
+                "/*/swagger-resources/**",
+                "/*/v2/api-docs",
+                "/*/swagger/api-docs",
+                "/*/webjars/**").permitAll()
             .anyRequest()
             .access("@permissionService.hasPermission(request, authentication)");
     }
