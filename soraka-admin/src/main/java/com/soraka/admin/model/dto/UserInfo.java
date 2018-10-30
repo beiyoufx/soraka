@@ -15,11 +15,6 @@ import java.util.List;
 @Data
 public class UserInfo extends BaseDTO {
     /**
-     * 用户凭证
-     */
-    private String token;
-
-    /**
      * 用户信息
      */
     private UserDO user;

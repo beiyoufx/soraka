@@ -77,11 +77,7 @@ public class MenuController extends BaseController {
     @ApiOperation("查询用户路由树")
     public R findUserMenu() {
         R r = R.success();
-        // TODO 获取用户角色
-        List<String> roleKeys = new ArrayList<>();
-        roleKeys.add("admin");
-        roleKeys.add("tech");
-        roleKeys.add("editor");
+        List<String> roleKeys = getRole();
         List<MenuDO> menus = menuService.getRoleMenu(roleKeys);
         List<VueRouter> routers = new ArrayList<>();
         menus.forEach(menuDO -> {

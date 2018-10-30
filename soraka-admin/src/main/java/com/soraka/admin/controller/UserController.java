@@ -1,5 +1,7 @@
 package com.soraka.admin.controller;
 
+import com.soraka.admin.model.dto.UserInfo;
+import com.soraka.admin.service.MenuService;
 import com.soraka.common.model.domain.RoleDO;
 import com.soraka.common.model.domain.UserDO;
 import com.soraka.common.model.dto.Page;
@@ -30,6 +32,8 @@ public class UserController extends BaseController {
     private UserService userService;
     @Autowired
     private RoleService roleService;
+    @Autowired
+    private MenuService menuService;
 
     @GetMapping("{id}")
     @ApiOperation("获取用户详情")
@@ -93,5 +97,16 @@ public class UserController extends BaseController {
     @ApiOperation(value = "获取用户详情", notes = "根据手机获取用户详情")
     public UserDO getByMobilephone(@PathVariable("mobilephone") String mobilephone) {
         return userService.getByMobilephone(mobilephone);
+    }
+
+    @GetMapping("info")
+    @ApiOperation("个人信息")
+    public UserInfo info() {
+        String username = getUsername();
+        UserDO user = userService.getByUsername(username);
+        UserInfo userInfo = new UserInfo();
+        userInfo.setUser(user);
+        userInfo.setPermissions(menuService.getUserPermission(user.getId()));
+        return userInfo;
     }
 }

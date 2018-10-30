@@ -75,7 +75,7 @@ public class MenuServiceImpl implements MenuService {
     @Transactional(readOnly = true, rollbackFor = {RuntimeException.class})
     @Override
     public List<MenuDO> findAll() {
-        return menuDAO.find(new QueryParam());
+        return menuDAO.find(null);
     }
 
     /**
