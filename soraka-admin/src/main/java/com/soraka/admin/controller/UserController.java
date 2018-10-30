@@ -82,4 +82,16 @@ public class UserController extends BaseController {
     public UserDO getByUsername(@PathVariable("username") String username) {
         return userService.getByUsername(username);
     }
+
+    @GetMapping("email/{email}")
+    @ApiOperation(value = "获取用户详情", notes = "根据邮箱获取用户详情")
+    public UserDO getByEmail(@PathVariable("email") String email) {
+        return userService.getByEmail(email);
+    }
+
+    @GetMapping("mobilephone/{mobilephone}")
+    @ApiOperation(value = "获取用户详情", notes = "根据手机获取用户详情")
+    public UserDO getByMobilephone(@PathVariable("mobilephone") String mobilephone) {
+        return userService.getByMobilephone(mobilephone);
+    }
 }
