@@ -1,5 +1,6 @@
 package com.soraka.gateway.service.impl;
 
+import com.soraka.common.constant.Constants;
 import com.soraka.common.model.domain.MenuDO;
 import com.soraka.gateway.service.PermissionService;
 import com.soraka.gateway.service.feign.MenuService;
@@ -50,7 +51,9 @@ public class PermissionServiceImpl implements PermissionService {
         // 获取角色权限
         List<String> roleKeys = new ArrayList<>();
         for (SimpleGrantedAuthority authority : grantedAuthorityList) {
-            roleKeys.add(authority.getAuthority());
+            if (!Constants.BASE_ROLE.equals(authority.getAuthority())) {
+                roleKeys.add(authority.getAuthority());
+            }
         }
         List<MenuDO> menus = menuService.findRoleMenu(roleKeys);
         // 权限校验
