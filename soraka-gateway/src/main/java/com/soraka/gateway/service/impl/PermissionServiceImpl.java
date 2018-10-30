@@ -51,17 +51,20 @@ public class PermissionServiceImpl implements PermissionService {
         // 获取角色权限
         List<String> roleKeys = new ArrayList<>();
         for (SimpleGrantedAuthority authority : grantedAuthorityList) {
-            if (!Constants.BASE_ROLE.equals(authority.getAuthority())) {
+            if (!Constants.BASE_ROLE.equalsIgnoreCase(authority.getAuthority())
+                && !Constants.ROLE_ANONYMOUS.equalsIgnoreCase(authority.getAuthority())) {
                 roleKeys.add(authority.getAuthority());
             }
         }
-        List<MenuDO> menus = menuService.findRoleMenu(roleKeys);
-        // 权限校验
-        for (MenuDO menu : menus) {
-            if (StringUtils.isNotBlank(menu.getUrl())
-                && antPathMatcher.match(menu.getUrl(), request.getRequestURI())
-                && request.getMethod().equalsIgnoreCase(menu.getMethod())) {
-                return true;
+        if (!roleKeys.isEmpty()) {
+            List<MenuDO> menus = menuService.findRoleMenu(roleKeys);
+            // 权限校验
+            for (MenuDO menu : menus) {
+                if (StringUtils.isNotBlank(menu.getUrl())
+                    && antPathMatcher.match(menu.getUrl(), request.getRequestURI())
+                    && request.getMethod().equalsIgnoreCase(menu.getMethod())) {
+                    return true;
+                }
             }
         }
         return false;

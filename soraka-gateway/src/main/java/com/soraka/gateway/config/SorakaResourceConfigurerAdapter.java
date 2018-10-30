@@ -33,6 +33,7 @@ public class SorakaResourceConfigurerAdapter extends ResourceServerConfigurerAda
         http.headers().frameOptions().disable();
         http
             .authorizeRequests()
+            .antMatchers("/auth/oauth/token_key").denyAll()
             .antMatchers(
                 "/auth/**",
                 "/*/swagger-ui.html",

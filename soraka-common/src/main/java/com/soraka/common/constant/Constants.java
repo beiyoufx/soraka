@@ -26,9 +26,15 @@ public interface Constants {
      * 基本角色
      */
     String BASE_ROLE = "ROLE_USER";
+    String ROLE_ANONYMOUS = "ROLE_ANONYMOUS";
     /**
      * 安全相关
      */
     String SORAKA_LICENSE = "Made By SORAKA";
     String JWT_SIGN_KEY = "soraka";
+    /**
+     * token请求头名称
+     */
+    String TOKEN_HEADER = "Authorization";
+    String TOKEN_BEARER = "Bearer ";
 }
