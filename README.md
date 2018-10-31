@@ -40,8 +40,9 @@ soraka
 #### 安装教程
 
 1. 需要Java环境，JDK1.8以上
-2. 需要MySQL数据库，数据库字符集utf-8mb4
-3. 执行脚本`soraka\soraka-admin\soraka-init.sql`初始化数据库
-4. 修改`soraka-admin`数据库地址
-5. 依次启动`soraka-discovery`、`soraka-admin`、`soraka-auth`、`soraka-gateway`
-6. 前端项目在：https://gitee.com/beiyoufx/soraka-view
+2. 需要安装Maven
+3. 需要MySQL数据库，数据库字符集utf-8mb4
+4. 执行脚本`soraka\soraka-admin\soraka-init.sql`初始化数据库
+5. 修改`soraka-admin`数据库地址
+6. 依次启动`soraka-discovery`、`soraka-admin`、`soraka-auth`、`soraka-gateway`
+7. 前端项目在：https://gitee.com/beiyoufx/soraka-view
