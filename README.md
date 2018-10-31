@@ -36,6 +36,8 @@ soraka
 6. 数据库：MySQL 5.7.16
 7. 微服务文档：Swagger2 2.7.0
 8. 安全框架：Spring Security OAuth
+9. 熔断器：Hystrix
+10. 负载均衡：Zuul搭配Ribbon
 
 #### 安装教程
 
